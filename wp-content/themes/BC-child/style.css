@@ -1,0 +1,29 @@
+/*
+Theme Name: BC-Child
+Theme URI: http://www.biosphericallycorrect.org
+Description: WordPress child theme for Biospherically Correct
+Author: Benjamin
+Author URI: http: //www.authorsurl.com/
+Template: biosphericallycorrect
+Version: 1.0
+*/
+
+
+
+ @import url('../biosphericallycorrect/style.css');
+
+#sidebar {
+	width: 175px;
+	height: 100%;
+	padding: 30px 10px 0 35px;
+	float: left;
+
+	border: 2px dashed #BD8110 !important;
+    border-color:   black !important;
+    border-width:   2px !important;
+    border-style:   solid !important;
+}
+
+#content {
+	width: 77%;
+}

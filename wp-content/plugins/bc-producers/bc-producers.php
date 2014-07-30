@@ -1,0 +1,485 @@
+<?php
+/*
+Plugin Name: Biospherically Correct - Producer Registrations
+Plugin URI: http://www.biosphericallycorrect.org
+Description: Process and manage BC Producer registrations
+Version: 1.0
+Author: Ryan Marshall
+Author URI: http://www.schmoove.co.nz
+*/
+
+function addToCapsule($data) {
+
+	require_once '/home/vfh1/biosphericallycorrect.org/Capsule.php';
+
+	try {
+		$capsule = new Services_Capsule('vfh', 'e6f254594af78785a31192d60de81de7');
+		
+		$person   = $capsule->person->add(array(
+			'contacts' => array(
+				'address' => array(
+					'type' => 'Office',
+					'street' => $data['address'],
+					'city' => $data['city']
+				),
+				'email' => array(
+					'type' => 'Work',
+					'emailAddress' => $data['email']
+				),
+				'phone' => array(
+					'phoneNumber' => $data['phone'],
+					'type' => 'Work'
+				),
+				'website' => array(
+					'type' => 'Work',
+					'webService' => 'URL',
+					'webAddress' => $data['website']
+				)
+			),
+			'firstName' => $data['first_name'],
+			'lastName' => $data['last_name'],
+			'organisationName' => $data['company'],
+			'about' => 'Biospherically Correct Producer'
+		));
+	
+		if ($person !== true) {
+	        die('Could not create person');
+	    }
+	
+		$search = $capsule->party->getAny(array(
+	        'email' => $data['email']
+	    ));
+	
+		if (!isset($search->parties->person->id)) {
+	        die('Could not find the person');
+	    }
+	
+		$tag = $capsule->party->tag->add($search->parties->person->id,'BC Producer');
+	
+		if (!isset($tag)) {
+			die('Could not add tag');
+		} 
+	
+	} catch (Services_Capsule_Exception $e) {
+	    print_r($e);
+	}
+
+}
+
+function addToDatabase($data, $user_id) {
+	$data_company = empty($data['company'])? "NULL" : '"'.$data['company'].'"';
+	$data_first_name = empty($data['first_name'])? "NULL" : '"'.$data['first_name'].'"';
+	$data_last_name = empty($data['last_name'])? "NULL" : '"'.$data['last_name'].'"';
+	$data_address = empty($data['address'])? "NULL" : '"'.$data['address'].'"';
+	$data_city = empty($data['city'])? "NULL" : '"'.$data['city'].'"';
+	$data_phone = empty($data['phone'])? "NULL" : '"'.$data['phone'].'"';
+	$data_email = empty($data['email'])? "NULL" : '"'.$data['email'].'"';
+	$data_website = empty($data['website'])? "NULL" : '"'.$data['website'].'"';
+
+	require_once("auth_common.php");
+	$conn = db_connect();
+
+	$sql = "insert into `test`.`wp_test_user_profile` (`user_id`, `organisation_name`, `first_name`, `last_name`, `address`, `town_city`, `phone`, `email_address`, `website`, `logo`, `product_name`, `product_description`, `product_category`, `product_form`, `product_size`) 
+			VALUES ($user_id, $data_company, $data_first_name, $data_last_name, $data_address, $data_city, $data_phone, $data_email, $data_website, NULL, NULL, NULL, NULL, NULL,NULL)";
+	//echo $sql;
+
+	$result = $conn->query($sql);
+	if (!$result) {
+		throw new Exception('Could not register you in database - please try again later.');
+	}
+}
+
+
+
+
+function isValidEmail($email) {
+  $regexp="/^[a-z0-9]+([_\\.-][a-z0-9]+)*@([a-z0-9]+([\.-][a-z0-9]+)*)+\\.[a-z]{2,}$/i";
+  if ( !preg_match($regexp, $email) ) {
+       return false;
+  }
+  return true;
+}
+
+function producerRegistration($attributes) {
+
+	global $wpdb;
+	$wpdb->show_errors();
+	
+	$wp_upload_dir = wp_upload_dir();
+
+	if ($_POST) {
+
+		// Check if fields are valid
+//|| !isValidEmail($_POST['email'] 
+		if ( empty($_POST['first_name']) || empty($_POST['last_name']) || $_POST['sky'] != 'blue' ) {
+
+			$message = '<h4 class="error">There are errors in your submission. Please ensure you have entered information for all fields correctly.</h4>';
+
+		} else {
+
+			// Add to database
+			$logo_url = $wp_upload_dir['url'].'/'.$_FILES['logo']['name'];
+			$product_image_url = $wp_upload_dir['url'].'/'.$_FILES['product_image']['name'];
+			
+			$post_content = '
+<img src="'.$logo_url.'" width="200" align="right" alt="'.$_POST['company'].'">
+
+<h2>'.$_POST['product_name'].'</h2>
+
+<h4>'.$_POST['company'].'</h4>
+
+<hr>
+
+<p>'.nl2br($_POST['product']['description']).'</p>
+
+<p><strong>Country of Origin:</strong> '.$_POST['product']['country'].'</p>
+
+<p><strong>Availability:</strong> '.$_POST['product']['availability'].'</p>
+
+<p><a href="http://'.$_POST['website'].'">'.$_POST['website'].'</a></p>
+
+<hr>
+
+<h4>Diversity Protection</h4>
+<p>'.nl2br($_POST['content']['diversity_protection']).'</p>
+<br />
+<h4>Green Ingredients</h4>
+<p>'.nl2br($_POST['content']['green_ingredients']).'</p>
+<br />
+<h4>Positive Functionality</h4>
+<p>'.nl2br($_POST['content']['positive_functionality']).'</p>
+<br />
+<h4>Eco Processes</h4>
+<p>'.nl2br($_POST['content']['eco_processes']).'</p>
+<br />
+<h4>Trade Integrity</h4>
+<p>'.nl2br($_POST['content']['trade_integrity']).'</p>
+<br />
+<br />
+<img src="'.$product_image_url.'" width="300" align="right" alt="'.$_POST['product_name'].'">
+
+<p><a href="http://'.$_POST['website'].'">'.$_POST['website'].'</a></p>
+';
+		
+			$post = array(
+			  'post_title'			  => $_POST['company'],
+			  'post_name'			  => sanitize_title($_POST['company']),
+			  'post_excerpt'		  => '',
+			  'post_status'           => 'pending', 
+			  'post_type'             => 'page',
+			  'post_author'           => 1,
+			  'ping_status'           => get_option('default_ping_status'), 
+			  'post_parent'           => $_POST['post_parent'],
+			  'menu_order'            => 0,
+			  'post_content'          => $post_content
+			);
+			$post_id = wp_insert_post($post);
+
+			// Attach uploaded files
+			if ( $_FILES ) 
+			{
+				// Logo
+				if ( $_FILES['logo']['error'] == 0 )
+				{
+					$destination = $wp_upload_dir['path'].'/'.$_FILES['logo']['name'];
+					if ( move_uploaded_file($_FILES['logo']['tmp_name'],$destination) ):
+						$attachment = array(
+							'guid' => $wp_upload_dir['url'] . '/' . $_FILES['logo']['name'], 
+							'post_title' => $_POST['company'].' logo',
+							'post_content' => '',
+							'post_status' => 'inherit',
+							'post_mime_type' => $_FILES['logo']['type'],
+							'post_parent' => $post_id
+						);
+						wp_insert_attachment( $attachment, $destination, $post_id );	
+					endif;
+				}
+				
+				// Product image
+				if ( $_FILES['logo']['error'] == 0 )
+				{
+					$destination = $wp_upload_dir['path'].'/'.$_FILES['product_image']['name'];
+					if ( move_uploaded_file($_FILES['product_image']['tmp_name'],$destination) ):
+						$attachment = array(
+							'guid' => $wp_upload_dir['url'] . '/' . $_FILES['product_image']['name'], 
+							'post_title' => $_POST['company'].' product image',
+							'post_content' => '',
+							'post_status' => 'inherit',
+							'post_mime_type' => $_FILES['product_image']['type'],
+							'post_parent' => $post_id
+						);
+						wp_insert_attachment( $attachment, $destination, $post_id );	
+					endif;
+				}
+				
+				// Misc files
+				for($i = 0; $i < count($_FILES['files']); $i++)
+				{
+					if ( $_FILES['files']['error'][$i] == 0 )
+					{
+						$destination = $wp_upload_dir['path'].'/'.$_FILES['files']['name'][$i];
+						if ( move_uploaded_file($_FILES['files']['tmp_name'][$i],$destination) ):
+							$attachment = array(
+								'guid' => $wp_upload_dir['url'] . '/' . $_FILES['files']['name'][$i], 
+								'post_title' => $_FILES['files']['name'][$i],
+								'post_content' => '',
+								'post_status' => 'inherit',
+								'post_mime_type' => $_FILES['files']['type'][$i],
+								'post_parent' => $post_id
+							);
+							wp_insert_attachment( $attachment, $destination, $post_id );	
+						endif;
+					}	
+				} 
+			}
+			
+			// Add to Capsule
+			//addToCapsule($_POST);
+
+			// Add to Database
+			$user_id = $_SESSION["user_id"];
+			addToDatabase($_POST, $user_id);
+			
+			$message = '<h4>Thank you. We will review your application and contact you shortly.</h4>
+						<p>Please note that processing will not take place until payment has been received and cleared.</p>
+						<p>Payment for $250.00 + GST can be via cheque, visa/mastercard or direct credit - phone (09) 353-7888 to make payment.</p>
+
+						<p>Send six samples of each product or a minimum of 12 samples if from a range to:</p>
+
+						<p><strong>New Product Assessment,<br />
+						Biospherically Correct<br />
+						26 Airedale Street<br />
+						Auckland 1010<br />
+						New Zealand</strong></p>  
+						<p>(Samples will not be returned)</p>';
+			$sent = 1;
+			
+			//mail('kim@visionproducts.co.nz', 'Biospherically Correct - Shop BC Registration', $_POST['company'].' has submitted a Shop BC application form:'.chr(10).chr(10).'http://www.biosphericallycorrect.org/wp-admin/post.php?post='.$post_id.'&action=edit'); 
+		    mail('wangyihuan123@hotmail.com', 'Biospherically Correct - Shop BC Registration', $_POST['company'].' has submitted a Shop BC application form:'.chr(10).chr(10).'http://www.biosphericallycorrect.org/wp-admin/post.php?post='.$post_id.'&action=edit'); 
+		    
+		}
+
+	}
+	
+	$output = '<hr />';
+	// echo "<br><br>";
+	// echo $_SERVER['REQUEST_URI'];
+	// echo "<br><br>";
+
+	if ( $message ) $output .= $message;
+	if ( !$sent): 
+		$output .= '
+		<br />
+		<form action="'.$_SERVER['REQUEST_URI'].'" method="post" id="producer_registration" enctype="multipart/form-data">
+		
+			<div class="row clearfix">
+				<label for="producer_company"><strong>Company / Organisation</strong></label>
+				<input type="text" id="producer_company" name="company" value="'.$_POST['company'].'" />
+			</div>
+			
+			<div class="row clearfix">
+				<label for="producer_first_name"><strong>First Name</strong></label>
+				<input type="text" id="producer_first_name" name="first_name" value="'.$_POST['first_name'].'" />
+			</div>
+			
+			<div class="row clearfix">
+				<label for="producer_last_name"><strong>Last Name</strong></label>
+				<input type="text" id="producer_last_name" name="last_name" value="'.$_POST['last_name'].'" />
+			</div>
+			
+			<div class="row clearfix">
+				<label for="producer_address"><strong>Address</strong></label>
+				<input type="text" id="producer_address" name="address" value="'.$_POST['address'].'" />
+			</div>
+			
+			<div class="row clearfix">
+				<label for="producer_city"><strong>Town/City</strong></label>
+				<input type="text" id="producer_city" name="city" value="'.$_POST['city'].'" />
+			</div>
+			
+			<div class="row clearfix">
+				<label for="producer_phone"><strong>Phone</strong></label>
+				<input type="text" id="producer_phone" name="phone" value="'.$_POST['phone'].'" />
+			</div>
+			
+			<div class="row clearfix">
+				<label for="producer_email"><strong>Email Address</strong></label>
+				<input type="text" id="producer_email" name="email" value="'.$_POST['email'].'" />
+			</div>
+			
+			<div class="row clearfix">
+				<label for="producer_website"><strong>Website</strong> (no http://)</label>
+				<input type="text" id="producer_website" name="website" value="'.$_POST['website'].'" />
+			</div>
+			
+			<div class="row clearfix">
+				<label for="producer_logo_image"><strong>Logo Image</strong></label>
+				<input type="file" id="producer_logo_image" name="logo" />
+			</div>
+			
+			<hr />
+			
+			<div class="row clearfix">
+				<label for="producer_product_name"><strong>Product Name</strong></label>
+				<input type="text" id="producer_product_name" name="product[name]" value="'.$_POST['product']['name'].'" />
+			</div>
+			
+			<div class="row clearfix">
+				<label for="producer_product_description"><strong>Product Description</strong></label>
+				<textarea name="product[description]" id="producer_product_description">'.$_POST['product']['description'].'</textarea>
+			</div>
+			
+			<div class="row clearfix">
+				<label for="producer_product_category"><strong>Product Category</strong></label>
+				<select name="post_parent">';
+			$categories = get_pages(array(
+				'child_of' => 739,
+				'parent' => 739
+			));
+			foreach ( $categories as $category ):
+				$output .= '<option value="' . $category->ID . '">'.$category->post_title.'</option>';
+			endforeach;
+			$output .= '</select>
+			</div>
+
+			<div class="row clearfix">
+				<label for="producer_product_form"><strong>Product Form</strong></label>
+				<input type="text" id="producer_product_form" name="product[form]" value="'.$_POST['product']['form'].'" />
+			</div>
+			
+			<div class="row clearfix">
+				<label for="producer_product_size"><strong>Product Size</strong></label>
+				<input type="text" id="producer_product_size" name="product[size]" value="'.$_POST['product']['size'].'" />
+			</div>
+			
+			<div class="row clearfix">
+				<label for="producer_product_formulation"><strong>Product Formulation</strong></label>
+				<textarea name="product[formulation]" id="producer_product_formulation">'.$_POST['product']['formulation'].'</textarea>
+			</div>
+			
+			<div class="row clearfix">
+				<label for="producer_product_image"><strong>Product Image</strong></label>
+				<input type="file" id="producer_product_image" name="product_image" />
+			</div>
+			
+			<div class="row clearfix">
+				<label for="producer_product_country"><strong>Country of Origin</strong></label>
+				<input type="text" id="producer_product_origin" name="product[origin]" value="'.$_POST['product']['origin'].'" />
+			</div>
+			
+			<div class="row clearfix">
+				<label for="producer_product_availability"><strong>Availability</strong><br />(retail locations, website, other)</label>
+				<input type="text" id="producer_product_availability" name="product[availability]" value="'.$_POST['product']['availability'].'" />
+			</div>
+			
+			<hr />
+			
+			<p>Please describe how your company or organisation follows the five key Biospherically Correct principles below, and attach any relevant supporting documents:</p>
+			
+			<div class="row clearfix">
+				<label><strong>Diversity Protection</strong><br />
+						<em>Orientation: Security - how ecologically and socially conscious is the sourcing of the raw materials?</em></label>
+				<textarea name="content[diversity_protection]">'.$_POST['content']['diversity_protection'].'</textarea>	
+			</div>
+
+			<div class="row clearfix">
+				<label>Supporting documents:</label>
+				<input type="file" name="files[]" />
+			</div>
+			
+			<div class="row clearfix">
+				<label>&nbsp;</label>
+				<input type="file" name="files[]" />
+			</div>
+			
+			<div class="row clearfix">
+				<label><strong>Green Ingredients</strong><br />
+						<em>Orientation: Selection - how green and mindful of our planet&quo;s total resources are the constituents of the product?</em></label>
+				<textarea name="content[green_ingredients]">'.$_POST['content']['green_ingredients'].'</textarea>	
+			</div>
+			
+			<div class="row clearfix">
+				<label>Supporting documents:</label>
+				<input type="file" name="files[]" />
+			</div>
+			
+			<div class="row clearfix">
+				<label>&nbsp;</label>
+				<input type="file" name="files[]" />
+			</div>
+			
+			<div class="row clearfix">
+				<label><strong>Positive Functionality</strong><br />
+						<em>Orientation: Significance - what true ecological and social significance does this product have in our lives?</em></label>
+				<textarea name="content[positive_functionality]">'.$_POST['content']['positive_functionality'].'</textarea>	
+			</div>
+			
+			<div class="row clearfix">
+				<label>Supporting documents:</label>
+				<input type="file" name="files[]" />
+			</div>
+			
+			<div class="row clearfix">
+				<label>&nbsp;</label>
+				<input type="file" name="files[]" />
+			</div>
+			
+			<div class="row clearfix">
+				<label><strong>Eco Processes</strong><br />
+						<em>Orientation: Systems - how ecologically advanced are the systems that enable this service to exist?</em></label>
+				<textarea name="content[eco_processes]">'.$_POST['content']['eco_processes'].'</textarea>	
+			</div>
+			
+			<div class="row clearfix">
+				<label>&nbsp;</label>
+				<input type="file" name="files[]" />
+			</div>
+			
+			<div class="row clearfix">
+				<label>&nbsp;</label>
+				<input type="file" name="files[]" />
+			</div>
+			
+			<div class="row clearfix">
+				<label><strong>Trade Integrity</strong><br />
+						<em>Orientation: Social Capital - what are the governing human values and how are they exercised and expressed by the enterprise?</em></label>
+				<textarea name="content[trade_integrity]">'.$_POST['content']['trade_integrity'].'</textarea>	
+			</div>
+			
+			<div class="row clearfix">
+				<label>&nbsp;</label>
+				<input type="file" name="files[]" />
+			</div>
+			
+			<div class="row clearfix">
+				<label>&nbsp;</label>
+				<input type="file" name="files[]" />
+			</div>
+			
+			<hr />
+
+			<div class="row clearfix">
+				<label><strong>Security question</strong><br />What colour is the sky?</label>
+				<input type="radio" name="sky" value="green" /> Green &nbsp; 
+				<input type="radio" name="sky" value="blue" /> Blue &nbsp; 
+				<input type="radio" name="sky" value="red" /> Red &nbsp; 
+			</div>
+
+			<hr />
+
+			<div class="row clearfix">
+				<label>&nbsp;</label>
+				<span class="required" style="float:right">* All fields are required</span>
+				<button type="submit">Submit Registration</button>
+			</div>
+					
+		</form>
+	';
+	endif;
+	
+	return $output;
+
+}
+
+add_shortcode('producer_registration', 'producerRegistration');
+?>
