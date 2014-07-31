@@ -69,11 +69,7 @@
         <li><a href="<?php bloginfo('url'); ?>/php-login/login/index">login</a></li>
         <li><a href="<?php bloginfo('url'); ?>/register">Register</a>
         <li><a href="<?php bloginfo('url'); ?>/donate">Donate to this project</a></li>
-        <!-- <li>
-            <ul id="header-bar">
-                <li><a href="<?php bloginfo('url'); ?>/donate">Donate to this project</a></li>
-            </ul>
-        </li> -->
+        
     </ul>
     <?php endif; ?>
 
@@ -102,8 +98,8 @@
             <?php endif; ?>
 
             <?php if (Session::get('user_logged_in') == true):?>
-            <li <?php if ($this->checkForActiveController($filename, "overview")) { echo ' class="active" '; } ?> >
-                <a href="<?php echo URL; ?>overview/index">Users Manager</a>
+            <li <?php if ($this->checkForActiveController($filename, "user")) { echo ' class="active" '; } ?> >
+                <a href="<?php echo URL; ?>user/index">Users Manager</a>
             </li>
             <?php endif; ?>
 
@@ -181,7 +177,6 @@
     <div id="sidebar">
             112233
     </div>
-
 
 <!-- 
 

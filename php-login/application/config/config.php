@@ -12,7 +12,7 @@
  * Useful to show every little problem during development, but only show hard errors in production
  */
 
-echo "<br>start php-login Configuration....<br>";
+// echo "<br>start php-login Configuration....<br>";
 
 
 error_reporting(E_ALL);

@@ -4,14 +4,14 @@
     <!-- echo out the system feedback (error and success messages) -->
     <?php $this->renderFeedbackMessages(); ?>
 
-    <p>
+    <!-- <p>
         This controller/action/view shows a list of all users in the system.
         You could use the underlaying code to build things that use profile information
         of one or multiple/all users.
-    </p>
+    </p> -->
 
     <p>
-        <span style="color: red;">NOTE: be sure NOT to show email addresses of users in a real app.</span>
+        <!-- <span style="color: red;">NOTE: be sure NOT to show email addresses of users in a real app.</span> -->
         <table class="overview-table">
         <?php
 
@@ -34,7 +34,7 @@
             echo '<td>'.$user->user_name.'</td>';
             echo '<td>'.$user->user_email.'</td>';
             echo '<td>Active: '.$user->user_active.'</td>';
-            echo '<td><a href="'.URL.'overview/showuserprofile/'.$user->user_id.'">Show user\'s profile</a></td>';
+            echo '<td><a href="'.URL.'user/showuserprofile/'.$user->user_id.'">Show user\'s profile</a></td>';
             echo "</tr>";
         }
 

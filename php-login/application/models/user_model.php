@@ -1,10 +1,10 @@
 <?php
 
 /**
- * OverviewModel
+ * UserModel
  * Handles data for overviews (pages that show user profiles / lists)
  */
-class OverviewModel
+class UserModel
 {
     /**
      * Constructor, expects a Database connection

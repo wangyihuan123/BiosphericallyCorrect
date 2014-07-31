@@ -30,7 +30,7 @@ class Application
         // check for controller: is the url_controller NOT empty ?
         if ($this->url_controller) {
 
-            echo "in the Application.__construct: url_controller NOT empty <br>";
+            // echo "in the Application.__construct: url_controller NOT empty <br>";
             // check for controller: does such a controller exist ?
             if (file_exists(CONTROLLER_PATH . $this->url_controller . '.php')) {
                 // if so, then load this file and create this controller
@@ -69,14 +69,14 @@ class Application
         // if url_controller is empty, simply show the main page (index/index)
         } else {
 
-            echo "in the Application.__construct: url_controller  empty <br>";
+            // echo "in the Application.__construct: url_controller  empty <br>";
             // invalid URL, so simply show home/index
             require CONTROLLER_PATH . 'index.php';
             $controller = new Index();
-            //$controller->index();
-            echo URL . 'login/index';
-            header('location: ' . URL . 'login/index');
-            exit; // 404 not found, because http://localhost/BiosphericallyCorrect/php-login/login/index
+            $controller->index();
+            // echo URL . 'login/index';
+            // header('location: ' . URL . 'login/index');
+            // exit; // 404 not found, because http://localhost/BiosphericallyCorrect/php-login/login/index
         }
     }
 
@@ -85,8 +85,8 @@ class Application
      */
     private function splitUrl()
     {
-        echo "splitUrl random number: " . rand(). "<br>";
-        echo "print $_GET[url]: " . $_GET['url'] . "<br>";
+        // echo "splitUrl random number: " . rand(). "<br>";
+        // echo "print $_GET[url]: " . $_GET['url'] . "<br>";
         if (isset($_GET['url'])) {
 
             // split URL
@@ -97,8 +97,8 @@ class Application
             // Put URL parts into according properties
             // By the way, the syntax here if just a short form of if/else, called "Ternary Operators"
             // http://davidwalsh.name/php-shorthand-if-else-ternary-operators
-            var_dump($url);
-            echo  "<br>";
+            // var_dump($url);
+            // echo  "<br>";
             $this->url_controller = (isset($url[0]) ? $url[0] : null);
             $this->url_action = (isset($url[1]) ? $url[1] : null);
             $this->url_parameter_1 = (isset($url[2]) ? $url[2] : null);

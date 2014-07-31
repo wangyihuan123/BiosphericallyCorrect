@@ -116,7 +116,7 @@
                 </div>
                 <div class="tableData"> 
                     <p> 
-                        <a href="testTask1.php"> anwser </a>
+                        <a href="<?php echo URL; ?>emp_questionnaire/index/1"> anwser </a>
                     </p>    
                 </div>
             </div>  

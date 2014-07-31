@@ -251,28 +251,28 @@ function test_get_db_table_question ($class)
 }
 
 function display_answer_radio_button_yes($question_id) {
-	echo '<input type="radio" name="answer'.$question_id.'" value="yes" checked> Yes ';
-	echo '<input type="radio" name="answer'.$question_id.'" value="no"> No ';
-	echo '<input type="radio" name="answer'.$question_id.'" value="n/a"> N/A ';
+	echo '<input type="radio" name="answer'.$question_id.'" value="yes" checked> Yes    ';
+	echo '<input type="radio" name="answer'.$question_id.'" value="no"> No    ';
+	echo '<input type="radio" name="answer'.$question_id.'" value="n/a"> N/A    ';
 
 }
 
 function display_answer_radio_button_no($question_id) {
-	echo '<input type="radio" name="answer'.$question_id.'" value="yes" > Yes ';
-	echo '<input type="radio" name="answer'.$question_id.'" value="no" checked> No ';
-	echo '<input type="radio" name="answer'.$question_id.'" value="n/a"> N/A ';
+	echo '<input type="radio" name="answer'.$question_id.'" value="yes" > Yes    ';
+	echo '<input type="radio" name="answer'.$question_id.'" value="no" checked> No    ';
+	echo '<input type="radio" name="answer'.$question_id.'" value="n/a"> N/A    ';
 }
 
 function display_answer_radio_button_na($question_id) {
-	echo '<input type="radio" name="answer'.$question_id.'" value="yes"> Yes ';
-	echo '<input type="radio" name="answer'.$question_id.'" value="no"> No ';
-	echo '<input type="radio" name="answer'.$question_id.'" value="n/a" checked> N/A ';
+	echo '<input type="radio" name="answer'.$question_id.'" value="yes"> Yes   ';
+	echo '<input type="radio" name="answer'.$question_id.'" value="no"> No   ';
+	echo '<input type="radio" name="answer'.$question_id.'" value="n/a" checked> N/A   ';
 }
 
 function display_answer_radio_button_none_default($question_id) {
-	echo '<input type="radio" name="answer'.$question_id.'" value="yes"> Yes ';
-	echo '<input type="radio" name="answer'.$question_id.'" value="no"> No ';
-	echo '<input type="radio" name="answer'.$question_id.'" value="n/a"> N/A ';
+	echo '<input type="radio" name="answer'.$question_id.'" value="yes"> Yes   ';
+	echo '<input type="radio" name="answer'.$question_id.'" value="no"> No   ';
+	echo '<input type="radio" name="answer'.$question_id.'" value="n/a"> N/A   ';
 }
 
 function display_questionnaire_table($class)

@@ -17,16 +17,17 @@ div.tableHead {
 	background: #efe5d0  top left; 
 	background-color: #67cc47;
 	font-size: 105%;
-	padding: 15px;
+	padding: 5px;
 	vertical-align: top;
 	text-align: center;
+	height: 22px;
 }
 
 div.tableData {
 	display: table-cell;
 	width: 300px;
 	background: #efe5d0  top left; 
-	background-color: #671c47;
+	/*background-color: #111;*/
 	font-size: 105%;
 	padding: 15px;
 	vertical-align: top;

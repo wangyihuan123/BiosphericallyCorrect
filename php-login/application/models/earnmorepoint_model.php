@@ -16,242 +16,138 @@ class EarnmorepointModel
     }
 
     /**
+     * Getter for all notes (notes are an implementation of example data, in a real world application this
+     * would be data that the user has created)
+     * @return array an array with several objects (the results)
+     */
+    public function getAllEarnmorepoints()
+    {
+        //$sql = "SELECT user_id, note_id, note_text FROM notes WHERE user_id = :user_id";
+        $sql = "SELECT * FROM wp_test_earn_more_point_question";
+        $query = $this->db->prepare($sql);
+        //$query->execute(array(':user_id' => $_SESSION['user_id']));
+        $query->execute();
+
+        // fetchAll() is the PDO method that gets all result rows
+        return $query->fetchAll();
+    }
+
+    /**
+     * Getter for a single note
+     * @param int $note_id id of the specific note
+     * @return object a single object (the result)
+     */
+    public function getEarnmorepoint($question_id)
+    {
+        echo "question_id again: " . $question_id;
+        $sql = "SELECT * FROM wp_test_earn_more_point_question WHERE question_id = :question_id";
+        $query = $this->db->prepare($sql);
+        $query->execute(array(':question_id' => $question_id));
+
+        // fetch() is the PDO method that gets a single result
+        return $query->fetch();
+    }
+
+    /**
+     * Setter for a note (create)
+     * @param string $note_text note text that will be created
+     * @return bool feedback (was the note created properly ?)
+     */
+    public function create()
+    {
+        try {
+            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "INSERT INTO wp_test_earn_more_point_question 
+            (`question_id`, `question_category`, `question_summary`, `full_description`, `key_steps`, `resource`, `step_hint`, `percent_caption`, `percent_point`) 
+                VALUES
+            (:question_id, :question_category, :question_summary, :full_description, :key_steps, :resource, :step_hint, :percent_caption, :percent_point)";
+
+            $query = $this->db->prepare($sql);
+            $query->execute(array(':question_id' => $_POST[question_id], 
+                                ':question_category' => $_POST[emp_add_category], 
+                                ':question_summary' => $_POST[emp_add_summary], 
+                                ':full_description' => $_POST[emp_add_description],
+                                ':key_steps' => $_POST[emp_add_resource], 
+                                ':resource' => $_POST[emp_add_key_steps], 
+                                ':step_hint' => $_POST[emp_add_step_hints],
+                                ':percent_caption' => $_POST[emp_add_percent_caption], 
+                                ':percent_point' => $_POST[emp_add_point]));
+        } catch (Exception $e) {
+            echo 'Exception -> ';
+            var_dump($e->getMessage());
+            exit;
+        }
+          
+        // // clean the input to prevent for example javascript within the notes.
+        // $note_text = strip_tags($note_text);
+
+        // $sql = "INSERT INTO notes (note_text, user_id) VALUES (:note_text, :user_id)";
+        // $query = $this->db->prepare($sql);
+        // $query->execute(array(':note_text' => $note_text, ':user_id' => $_SESSION['user_id']));
+
+        $count =  $query->rowCount();
+        if ($count == 1) {
+            return true;
+        } else {
+            $_SESSION["feedback_negative"][] = FEEDBACK_NOTE_CREATION_FAILED;
+            echo "mysql error: " . $sql;
+        }
+        // default return
+        return false;
+    }
+
+    /**
      * Setter for a note (update)
-     * @param int $user_id id of the specific user's questionnaire
+     * @param int $question_id id of the specific note
      * @param string $note_text new text of the specific note
      * @return bool feedback (was the update successful ?)
      */
-    public function editSave($note_id, $note_text)
-    // {
-    //     // clean the input to prevent for example javascript within the notes.
-    //     $note_text = strip_tags($note_text);
-
-    //     $sql = "UPDATE notes SET note_text = :note_text WHERE note_id = :note_id AND user_id = :user_id";
-    //     $query = $this->db->prepare($sql);
-    //     $query->execute(array(':note_id' => $note_id, ':note_text' => $note_text, ':user_id' => $_SESSION['user_id']));
-
-    //     $count =  $query->rowCount();
-    //     if ($count == 1) {
-    //         return true;
-    //     } else {
-    //         $_SESSION["feedback_negative"][] = FEEDBACK_NOTE_EDITING_FAILED;
-    //     }
-    //     // default return
-    //     return false;
-    // }
+    public function editSave($question_id, $note_text)
     {
+        // clean the input to prevent for example javascript within the notes.
+        $note_text = strip_tags($note_text);
 
-        $res = 0;
+        $sql = "UPDATE wp_test_earn_more_point_question SET 
+                                question_id = :question_id, 
+                                question_category = :question_category, 
+                                question_summary = :question_summary, 
+                                full_description = :full_description,
+                                key_steps = :key_steps, 
+                                resource = :resource, 
+                                percent_caption = :percent_caption,
+                                percent_point = :percent_point,
+                                WHERE question_id = :question_id ";
+        $query = $this->db->prepare($sql);
+        $query->execute(array(':question_id' => $_POST[question_id], 
+                                ':question_category' => $_POST[emp_add_category], 
+                                ':question_summary' => $_POST[emp_add_summary], 
+                                ':full_description' => $_POST[emp_add_description],
+                                ':key_steps' => $_POST[emp_add_resource], 
+                                ':resource' => $_POST[emp_add_key_steps], 
+                                ':step_hint' => $_POST[emp_add_step_hints],
+                                ':percent_caption' => $_POST[emp_add_percent_caption], 
+                                ':percent_point' => $_POST[emp_add_point]));
 
-
-        $db = new mysqli('localhost', 'root', 'ZpCnGva0', 'test');
-        if (mysqli_connect_errno()) {
-        echo "Error: Could not connect to database. Please try again later."; exit;
+        $count =  $query->rowCount();
+        if ($count == 1) {
+            return true;
+        } else {
+            $_SESSION["feedback_negative"][] = FEEDBACK_NOTE_EDITING_FAILED;
         }
-
-        date_default_timezone_set('Pacific/Auckland');
-
-        $g_category_array = array("Diversity protection", "Green ingredients", "Positive functionality", "Eco processes", "Trade integrity");
-        var_dump($g_category_array);
-        $g_category_switch_array = array ("Diversity protection"=>'1', "Green ingredients"=>'2', "Positive functionality"=>'3', 
-            "Eco processes"=>'4', "Trade integrity"=>'5');
-        var_dump($g_category_switch_array);
-        echo "<br>";
-        echo $g_category_switch_array["Positive functionality"];
-        echo "<br>";
-
-        $point["Diversity protection"] = 0;
-        $point["Green ingredients"] = 0;
-        $point["Positive functionality"] = 0;
-        $point["Eco processes"] = 0;
-        $point["Trade integrity"] = 0;
-
-
-        //echo date("Y-m-d H:i:s");
-        // TODO   answer1->  NEW database table!!!!
-        $tbl_name="wp_test_answer"; // Table name 
-
-
-
-
-// if (!empty($_POST[task1_process]))
-// {
-//     //$add_item = 0;
-//     if ($_POST[task1_process] == '0~25%')
-//     {
-//         $query = "update wp_test_user_point_new set `point` = 5  where `user_id` = 4 and `category_id` = 1";
-//     }
-//     else if ($_POST[task1_process] == '25~50%')
-//     {
-//         $query = "update wp_test_user_point_new set `point` = 10  where `user_id` = 4 and `category_id` = 1";
-//     }
-//     else if ($_POST[task1_process] == '50~75%')
-//     {
-//         //$add_item = 2;
-//         $query = "update wp_test_user_point_new set `point` = 15  where `user_id` = 4 and `category_id` = 1";
-//     }
-//     else if ($_POST[task1_process] == '75~100%')
-//     {
-//         $query = "update wp_test_user_point_new set `point` = 20  where `user_id` = 4 and `category_id` = 1";
-//         //$add_item = 3;
-//     }
-//     //echo $query;
-
-//     //if ($add_item > 0)
-//     //echo "<br>hello";
-//     echo $query;
-//     //$query = "update wp_test_user_point set `user_point_in_all` = `user_point_in_all` + ".$add_item." , `user_point_green_ingredients` = `user_point_green_ingredients` + ".$add_item." where `user_id` = 4";
-//     $result = $db->query($query);
-//     if ($result) {
-//         //echo $db->affected_rows."Congratulation! Please go back to your dashboard.";
-//     } else {
-//         echo "An error has occurred. The item was not added.".__LINE__;
-//         $res = -5;
-//     }
-// }
-
-
-// if (!empty($_POST[commentsEarnMorePointDiversityProtection]))
-// {
-//     $db->close();
-//     header("location: http://localhost/thanksForComments.php");
-//     exit;
-// }
-
-
-
-
-
-
-        for ($i = 1; $i <= 100; $i++)
-        {
-            //echo "answer$i";
-
-            if (empty($_POST["answer$i"])) {
-                continue;
-            }
-
-            $answer = $_POST["answer$i"];
-            $answer_detail_name = "answer_detail$i";
-            echo "...";
-            echo $answer_detail_name;
-            echo $_POST["$answer_detail_name"];
-
-
-            $answer_detail = $_POST["$answer_detail_name"];
-            echo "<br>:";
-            echo $answer_detail;
-            echo "<br>";
-
-            $query = "INSERT INTO $tbl_name (`question_id`, `user_id`, `action`, `description`, `date`, `comment`) VALUES
-             ('$i', '4', '$answer', '$answer_detail', '".date("Y-m-d H:i:s")."', NULL)";
-
-            
-            $result = $db->query($query);
-            if ($result) {
-                //echo $db->affected_rows."Congratulation! Please go back to your dashboard!";
-            } else {
-                echo $query; 
-                echo "An error has occurred. The item was not added.".__LINE__;
-                
-                $query = "update  $tbl_name set  `action` = '$answer', `description` = '$answer_detail', `date` = '".date("Y-m-d H:i:s")."', `comment` = NULL where `question_id` = '$i' and `user_id` = '4'";
-                echo $query; 
-                $result = $db->query($query);
-                if ($result) {
-                    
-                } else {
-                    echo "An error has occurred. The item was not updated.".__LINE__;
-                    continue;
-                }
-                //$res = -1;
-            }
-
-            // if already answer the quesion before
-            $question_table_name = "wp_test_question";
-            $user_id = 4;
-            $question_sql = "SELECT * FROM $question_table_name WHERE question_id='$i'";
-
-            $result_sql = $db->query($question_sql);
-            if ($result_sql) {
-                //echo $db->affected_rows."Congratulation! Please go back to your dashboard!";
-            } else {
-                echo $question_sql;
-                echo "An error has occurred. The item was not found.".__LINE__;
-                $res = -1;
-            }
-
-            echo "<br>";
-            echo mysqli_num_rows($result_sql);
-
-            echo "<br>.....<br>";
-
-            if (mysqli_num_rows($result_sql) != 1) {
-                echo $question_sql;
-                echo "No rows found, nothing to print so am exiting".__LINE__;
-                echo mysqli_num_rows($result_sql);
-                echo "<br>";
-                //TODO:
-                //exit;
-            }
-
-            $rows=mysqli_fetch_assoc($result_sql);
-            echo $rows;
-            echo "<br>..<br>";
-            $category = $rows["question_category"];
-            echo $category ;
-            echo "<br>";
-
-            if ("yes" == $answer) {
-                $point["$category"] += $rows["question_action_weight"];
-            }
-
-            if (NULL != $answer_detail) {
-                $point["$category"] += $rows["question_description_weight"];
-            }
-
-            // TODO: how about the comments
-
-            // TODO: need to check the point before update!!!!!!
-
-        }
-
-        var_dump($point);
-
-
-        foreach ($g_category_array as $category) {
-
-            $point_cate = $point["$category"];
-            $category_id = $g_category_switch_array["$category"];
-            $query_update = "update wp_test_user_point_new set `in_all_point` = $point_cate , `point` = $point_cate where `user_id` = 4 and `category_id` = '$category_id'";
-            $result = $db->query($query_update);
-            echo $query_update ;
-            if ($result) {
-                //echo $db->affected_rows."Congratulation! Please go back to your dashboard!";
-            } else {
-                echo $query_update ;
-                echo "An error has occurred. The item was not updated.".__LINE__;
-                $res = -1;
-            }
-
-        }
-
-        return true;
+        // default return
+        return false;
     }
-
-
-
-
 
     /**
      * Deletes a specific note
-     * @param int $note_id id of the note
+     * @param int $question_id id of the note
      * @return bool feedback (was the note deleted properly ?)
      */
-    public function delete($note_id)
+    public function delete($question_id)
     {
-        $sql = "DELETE FROM notes WHERE note_id = :note_id AND user_id = :user_id";
+        $sql = "DELETE FROM wp_test_earn_more_point_question WHERE question_id = :question_id";
         $query = $this->db->prepare($sql);
-        $query->execute(array(':note_id' => $note_id, ':user_id' => $_SESSION['user_id']));
+        $query->execute(array(':question_id' => $question_id));
 
         $count =  $query->rowCount();
 

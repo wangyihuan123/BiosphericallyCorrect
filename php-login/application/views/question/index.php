@@ -1,19 +1,10 @@
+
+
 <div class="content">
-    <h1>Edit Questions</h1>
+    <h1>Questions Admin</h1>
 
     <!-- echo out the system feedback (error and success messages) -->
      <?php $this->renderFeedbackMessages(); ?>
-<!--
-    <?php if ($this->ratingsystem) { ?>
-        <form method="post" action="<?php echo URL; ?>ratingsystem/editSave/<?php echo $this->ratingsystem->note_id; ?>">
-            <label>Change text of ratingsystem: </label>
-            <p> we use htmlentities() here to prevent user input with " etc. break the HTML </p>
-            <input type="text" name="ratingsystem_text" value="<?php echo htmlentities($this->ratingsystem->note_text); ?>" />
-            <input type="submit" value='Change' />
-        </form>
-    <?php } else { ?>
-        <p>This ratingsystem does not exist.</p>
-    <?php } ?> -->
 
 
     <h2 style="margin-top: 50px;">List of all questions</h2>

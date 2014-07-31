@@ -19,6 +19,7 @@ class Questionnaire extends Controller
      */
     function index()
     {
+        // TODO: get the questions and answers from db
         $this->view->render('questionnaire/index');
     }
 
@@ -31,9 +32,7 @@ class Questionnaire extends Controller
     public function editSave($user_id)
     {
         // now, we suppose $user_id is always 4
-        $user_id = 4;
-
-        echo "in the controller->editSave .....<br>";
+        //$user_id = 4;
 
         var_dump($_POST);
 

@@ -1,3 +1,4 @@
+
 <div class="content">
     <!-- <h2>Questionnaire!</h2>
 
@@ -23,19 +24,14 @@
 
     <!-- <section id = "requiredActions"> -->
 
-        <h1>My Assessment</h2>
+        <h1 style="padding-left: 15px">My Assessment</h2>
         <p>Fill out the assessment below. To earn Biospherically Correct generation 2 &amp; 3, you must complete the Required Action for each level and accumulate enough points from the 100 questions.</p>
 
-        <h1>Required Action</h1>
+        <h1 style="padding-left: 15px">Required Action</h1>
         <p>You must complete these actions to attain a certification level.</p>
-<!--         <p>&nbsp;</p>
- -->
-        <?php echo "user_id: " . $_SESSION['user_id']; ?>
-        <?php echo URL; ?>questionnaire/editSave/<?php 
-        echo 4;
-        //echo $_SESSION['user_id'];
-        //echo $this->note->note_id; 
-        ?>
+        <p>&nbsp;</p>
+
+
         <form method="post" action="<?php echo URL; ?>questionnaire/editSave/<?php 
         echo 4;
         //echo $_SESSION['user_id'];

@@ -7,7 +7,7 @@ Version: 1.0
 Author: Benjamin Wang
 Author URI: 
 */
-echo "php-login root index.php: random number: " . rand() . "<br>";
+// echo "php-login root index.php: random number: " . rand() . "<br>";
 // Load application config (error reporting, database credentials etc.)
 require 'application/config/config.php';
 

@@ -8,7 +8,7 @@
  */
 function autoload($class) {
     // if file does not exist in LIBS_PATH folder [set it in config/config.php]
-    echo LIBS_PATH . $class . ",<br>";
+    // echo LIBS_PATH . $class . ",<br>";
     
     if (file_exists(LIBS_PATH . $class . ".php")) {
         require LIBS_PATH . $class . ".php";
