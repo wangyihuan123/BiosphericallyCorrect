@@ -43,12 +43,17 @@ class Questionnaire extends Controller
             $questionnaire_successful = $questionnaire_model->editSave($user_id);
             //$note_model->editSave($note_id, $_POST['note_text']);
         }
+
         // header('location: ' . URL . 'questionnaire');
         
         if ($questionnaire_successful == true) {
-            header('location: ' . URL . 'dashboard/index');
+            $earnmorepoint_model = $this->loadModel('Earnmorepoint');
+            $this->view->earnmorepoint = $earnmorepoint_model->getAllEarnmorepoints();
+            $this->view->render('dashboard/index');
+            //header('location: ' . URL . 'dashboard/index');
         } else {
-            header('location: ' . URL . 'help/index');
+            $this->view->render('help/index');
+            //header('location: ' . URL . 'help/index');
         }
     }
 

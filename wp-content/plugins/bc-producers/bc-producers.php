@@ -237,8 +237,8 @@ function producerRegistration($attributes) {
 			//addToCapsule($_POST);
 
 			// Add to Database
-			$user_id = $_SESSION["user_id"];
-			addToDatabase($_POST, $user_id);
+			//$user_id = $_SESSION["user_id"];
+			addToDatabase($_POST);
 			
 			$message = '<h4>Thank you. We will review your application and contact you shortly.</h4>
 						<p>Please note that processing will not take place until payment has been received and cleared.</p>

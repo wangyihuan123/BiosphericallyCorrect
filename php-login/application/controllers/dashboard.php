@@ -23,6 +23,8 @@ class Dashboard extends Controller
      */
     function index()
     {
+        $earnmorepoint_model = $this->loadModel('Earnmorepoint');
+        $this->view->earnmorepoint = $earnmorepoint_model->getAllEarnmorepoints();
         $this->view->render('dashboard/index');
     }
 }

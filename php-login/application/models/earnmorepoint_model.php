@@ -67,8 +67,8 @@ class EarnmorepointModel
                                 ':question_category' => $_POST[emp_add_category], 
                                 ':question_summary' => $_POST[emp_add_summary], 
                                 ':full_description' => $_POST[emp_add_description],
-                                ':key_steps' => $_POST[emp_add_resource], 
-                                ':resource' => $_POST[emp_add_key_steps], 
+                                ':key_steps' => $_POST[emp_add_key_steps], 
+                                ':resource' => $_POST[emp_add_resource], 
                                 ':step_hint' => $_POST[emp_add_step_hints],
                                 ':percent_caption' => $_POST[emp_add_percent_caption], 
                                 ':percent_point' => $_POST[emp_add_point]));

@@ -172,6 +172,26 @@ define("HASH_COST_FACTOR", "10");
  *
  * It's really recommended to use SMTP!
  */
+
+
+// Options: 0 = off, 1 = commands, 2 = commands and data, perfect to see SMTP errors, see the PHPMailer manual for more
+define("PHPMAILER_DEBUG_MODE", 0);
+// use SMTP or basic mail() ? SMTP is strongly recommended
+define("EMAIL_USE_SMTP", true);
+// name of your host
+define("EMAIL_SMTP_HOST", 'ssl://smtp.gmail.com');
+// leave this true until your SMTP can be used without login
+define("EMAIL_SMTP_AUTH", true);
+// SMTP provider username
+define("EMAIL_SMTP_USERNAME", 'wangyihuan123@gmail.com');
+// SMTP provider password
+define("EMAIL_SMTP_PASSWORD", 'comeonbaby123');
+// SMTP provider port
+define("EMAIL_SMTP_PORT", 465);
+// SMTP encryption, usually SMTP providers use "tls" or "ssl", for details see the PHPMailer manual
+define("EMAIL_SMTP_ENCRYPTION", 'ssl');
+
+/*
 // Options: 0 = off, 1 = commands, 2 = commands and data, perfect to see SMTP errors, see the PHPMailer manual for more
 define("PHPMAILER_DEBUG_MODE", 0);
 // use SMTP or basic mail() ? SMTP is strongly recommended
@@ -188,7 +208,7 @@ define("EMAIL_SMTP_PASSWORD", 'yourpassword');
 define("EMAIL_SMTP_PORT", 465);
 // SMTP encryption, usually SMTP providers use "tls" or "ssl", for details see the PHPMailer manual
 define("EMAIL_SMTP_ENCRYPTION", 'ssl');
-
+*/
 /**
  * Configuration for: Email content data
  *

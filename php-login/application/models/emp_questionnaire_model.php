@@ -88,13 +88,13 @@ class Emp_QuestionnaireModel
         date_default_timezone_set('Pacific/Auckland');
 
         $g_category_array = array("Diversity protection", "Green ingredients", "Positive functionality", "Eco processes", "Trade integrity");
-        var_dump($g_category_array);
+        //var_dump($g_category_array);
         $g_category_switch_array = array ("Diversity protection"=>'1', "Green ingredients"=>'2', "Positive functionality"=>'3', 
             "Eco processes"=>'4', "Trade integrity"=>'5');
-        var_dump($g_category_switch_array);
-        echo "<br>";
-        echo $g_category_switch_array["Positive functionality"];
-        echo "<br>";
+        // var_dump($g_category_switch_array);
+        // echo "<br>";
+        // echo $g_category_switch_array["Positive functionality"];
+        // echo "<br>";
 
         $point["Diversity protection"] = 0;
         $point["Green ingredients"] = 0;
@@ -116,15 +116,15 @@ class Emp_QuestionnaireModel
 
             $answer = $_POST["answer$i"];
             $answer_detail_name = "answer_detail$i";
-            echo "...";
-            echo $answer_detail_name;
-            echo $_POST["$answer_detail_name"];
+            // echo "...";
+            // echo $answer_detail_name;
+            // echo $_POST["$answer_detail_name"];
 
 
             $answer_detail = $_POST["$answer_detail_name"];
-            echo "<br>:";
-            echo $answer_detail;
-            echo "<br>";
+            // echo "<br>:";
+            // echo $answer_detail;
+            // echo "<br>";
 
             $query = "INSERT INTO $tbl_name (`question_id`, `user_id`, `action`, `description`, `date`, `comment`) VALUES
              ('$i', '4', '$answer', '$answer_detail', '".date("Y-m-d H:i:s")."', NULL)";
@@ -163,10 +163,10 @@ class Emp_QuestionnaireModel
                 $res = -1;
             }
 
-            echo "<br>";
-            echo mysqli_num_rows($result_sql);
+            // echo "<br>";
+            // echo mysqli_num_rows($result_sql);
 
-            echo "<br>.....<br>";
+            // echo "<br>.....<br>";
 
             if (mysqli_num_rows($result_sql) != 1) {
                 echo $question_sql;
@@ -178,11 +178,11 @@ class Emp_QuestionnaireModel
             }
 
             $rows=mysqli_fetch_assoc($result_sql);
-            echo $rows;
-            echo "<br>..<br>";
+            // echo $rows;
+            // echo "<br>..<br>";
             $category = $rows["question_category"];
-            echo $category ;
-            echo "<br>";
+            // echo $category ;
+            // echo "<br>";
 
             if ("yes" == $answer) {
                 $point["$category"] += $rows["question_action_weight"];
@@ -198,7 +198,7 @@ class Emp_QuestionnaireModel
 
         }
 
-        var_dump($point);
+        //var_dump($point);
 
 
         foreach ($g_category_array as $category) {
@@ -207,7 +207,7 @@ class Emp_QuestionnaireModel
             $category_id = $g_category_switch_array["$category"];
             $query_update = "update wp_test_user_point_new set `in_all_point` = $point_cate , `point` = $point_cate where `user_id` = 4 and `category_id` = '$category_id'";
             $result = $db->query($query_update);
-            echo $query_update ;
+            //echo $query_update ;
             if ($result) {
                 //echo $db->affected_rows."Congratulation! Please go back to your dashboard!";
             } else {

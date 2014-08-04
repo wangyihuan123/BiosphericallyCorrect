@@ -14,32 +14,11 @@
     by placing <span style='font-style: italic;'>Auth::handleLogin();</span> into the constructor. -->
 
 
-
-             
-    <div id="globalPoint" style = "text-align: center;">
-        <p>
-        My Point
-        <h2>
-            <?php
-                require_once MYLIBS_PATH . 'test_common.php';
-                display_global_point($_SESSION['user_id']);
-            ?>
-        </h2>
-        </p>
-    </div>
-
-    <header class="MyDashboardHeader">
-        <h1>My Dashboard</h1>
-        <!-- <p>Hello, 
-              <?php session_start(); echo $_SESSION['valid_user'];?> </p> -->
-    </header>
-
-    <br><br><br>
-
-    
+    <h1>My Dashboard</h1>
+    <br>
 
     <section id = "Dashboard">
-
+        
         <h3>MY PROGRESS</h3>
         <div class="tableContainer">
             <div class="tableRow">
@@ -89,64 +68,52 @@
 
     </section>
 
-    
+    <br>
+    <br>
     <section id = "EarnMorePoints">
-        <br>
-        <br>
         <h2>Earn More Points</h2>
-        <div class="tableContainer">
-            <div class="tableRow">
-                <div class="EarnMorePointTableHead"> 
-                    Diversity protection
-                </div>
-            </div>
-            <div class="tableRow">
-                <div class="tableData"> 
-                    <p>task 1</p> 
-
-                </div>
-                <div class="tableData"> 
-                    <p> 
-                        <?php
-                            //require_once '/Users/zxl2013/Sites/BiosphericallyCorrect/myLibs/test_common.php';
-                            session_start();
-                            echo test_get_earn_more_point($_SESSION['user_id'],1);
-                        ?>
-                    </p>    
-                </div>
-                <div class="tableData"> 
-                    <p> 
-                        <a href="<?php echo URL; ?>emp_questionnaire/index/1"> anwser </a>
-                    </p>    
-                </div>
-            </div>  
+<!-- 
+        <table class="tableContainerwithBorder" >
+            <tr>
+                <td>
+                    <div class="EarnMorePointTableHead"> 
+                        DIVERSITY PROTECTION
+                    </div>
+                </td>
+                <td>
+                    <div class="EarnMorePointTableHead"> 
+                    <?php
+                        echo test_get_earn_more_point($_SESSION['user_id'],1);
+                    ?>
+                    </div>
+                </td>
+            </tr>
+        </table>
+            -->
         <br><br>
-            <div class="tableRow">
-                <div class="EarnMorePointTableHead"> 
-                    Green ingredients
-                </div>
+        <div class="tableContainerwithBorder" >
+            <div class="EarnMorePointTableHead"> 
+                DIVERSITY PROTECTION <span style="padding-left: 100px"> <?php
+                        echo test_get_earn_more_point($_SESSION['user_id'],1);
+                    ?></span>
             </div>
-            <div class="tableRow">
-                <div class="tableData"> 
-                    <p>task 2</p> 
-
-                </div>
-                <div class="tableData"> 
-                    <p> 
-                        <?php
-                            //require_once '/Users/zxl2013/Sites/BiosphericallyCorrect/myLibs/test_common.php';
-                            session_start();
-                            echo test_get_earn_more_point($_SESSION['user_id'],2);
-                        ?>
-                    </p>    
-                </div>
-                <div class="tableData"> 
-                    <p> 
-                        <a href="testTask2.php"> anwser </a>
-                    </p>    
-                </div>
-            </div>  
+            <?php 
+            display_EMP_tabel($this->earnmorepoint, "Diversity protection");
+            ?>
         </div>
+        <br><br>
+        <div class="tableContainerwithBorder" >
+            <div class="EarnMorePointTableHead"> 
+                GREEN INGREDIENTS <span style="padding-left: 100px"> <?php
+                        echo test_get_earn_more_point($_SESSION['user_id'],2);
+                    ?></span>
+            </div>
+            <?php 
+            display_EMP_tabel($this->earnmorepoint, "Green ingredients");
+            ?>
+        </div>
+
+        
     </section>
 
 </div>

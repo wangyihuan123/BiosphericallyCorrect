@@ -24,96 +24,48 @@
 
     <!-- <section id = "requiredActions"> -->
 
-        <h1 style="padding-left: 15px">My Assessment</h2>
+        <h1>My Assessment</h2>
         <p>Fill out the assessment below. To earn Biospherically Correct generation 2 &amp; 3, you must complete the Required Action for each level and accumulate enough points from the 100 questions.</p>
-
-        <h1 style="padding-left: 15px">Required Action</h1>
-        <p>You must complete these actions to attain a certification level.</p>
         <p>&nbsp;</p>
 
-
+        <h1>Required Actions</h1>
+        <p>You must complete these actions to attain a certification level.</p>
+        
         <form method="post" action="<?php echo URL; ?>questionnaire/editSave/<?php 
         echo 4;
         //echo $_SESSION['user_id'];
         //echo $this->note->note_id; 
         ?>">
-        <!-- <form action="BiosphericallyCorrect/handle.php" method="post"> -->
 
         <h3><strong>Generation 1</strong></h3>
-
-        <div class="tableContainer">
-            <div class="tableRow">
-                <div class="tableHead"> 
-                    <p style="text-align:center;">Assessment</p>    
-                </div>
-                <div class="tableHead"> 
-                    <p style="text-align:center;">Action</p>    
-                </div>
-            </div>  
-            <?php
-                require_once (MYLIBS_PATH . 'test_common.php');
-                display_questionnaire_table("BC1");
-                // double is ok. display_questionnaire_table("BC1");
-            ?>
-        </div>  
-
-
+        <?php
+            display_questionnaire_table("BC1");
+        ?>
 
         <br>
         <h3><strong>Generation 2</strong></h3>
-        <div class="tableContainer">
-            <div class="tableRow">
-                <div class="tableHead"> 
-                    <p style="text-align:center;">Assessment</p>    
-                </div>
-                <div class="tableHead"> 
-                    <p style="text-align:center;">Action</p>    
-                </div>
-            </div>  
-            <?php
-                display_questionnaire_table("BC2");
-            ?>
-        </div>  
-
+        <?php
+            display_questionnaire_table("BC2");
+        ?>
 
         <br>
         <h3><strong>Generation 3</strong></h3>
-        <div class="tableContainer">
-            <div class="tableRow">
-                <div class="tableHead"> 
-                    <p style="text-align:center;">Assessment</p>    
-                </div>
-                <div class="tableHead"> 
-                    <p style="text-align:center;">Action</p>    
-                </div>
-            </div>  
-            <?php
-                display_questionnaire_table("BC3");
-            ?>
-
-        </div>
-
-
+        <?php
+            display_questionnaire_table("BC3");
+        ?>
 
         <br>
         <h3><strong>General Actions </strong></h3>
-        <div class="tableContainer">
-            <div class="tableRow">
-                <div class="tableHead"> 
-                    <p style="text-align:center;">Assessment</p>    
-                </div>
-                <div class="tableHead"> 
-                    <p style="text-align:center;">Actions</p>   
-                </div>
-            </div>  
-            <?php
-                display_questionnaire_table("General");
-            ?>
-            
-        </div>
+        <?php
+            display_questionnaire_table("General");
+        ?>
+
 
         <br>
-        <input class="questionnaire" type="submit" value="Submit" />
+        <div class="row clearfix" id="producer_registration">
+                <label>&nbsp;</label>
+                <button type="submit">Submit </button>
+            </div>
         </form>
             
 

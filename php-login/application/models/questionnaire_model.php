@@ -75,24 +75,7 @@ class QuestionnaireModel
      * @param string $note_text new text of the specific note
      * @return bool feedback (was the update successful ?)
      */
-    public function editSave($note_id, $note_text)
-    // {
-    //     // clean the input to prevent for example javascript within the notes.
-    //     $note_text = strip_tags($note_text);
-
-    //     $sql = "UPDATE notes SET note_text = :note_text WHERE note_id = :note_id AND user_id = :user_id";
-    //     $query = $this->db->prepare($sql);
-    //     $query->execute(array(':note_id' => $note_id, ':note_text' => $note_text, ':user_id' => $_SESSION['user_id']));
-
-    //     $count =  $query->rowCount();
-    //     if ($count == 1) {
-    //         return true;
-    //     } else {
-    //         $_SESSION["feedback_negative"][] = FEEDBACK_NOTE_EDITING_FAILED;
-    //     }
-    //     // default return
-    //     return false;
-    // }
+    public function editSave($user_id)
     {
 
         $res = 0;

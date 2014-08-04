@@ -9,19 +9,19 @@
 
     <h2 style="margin-top: 50px;">List of all questions</h2>
 
-    <table>
+    <table style="width:700px;margin-left: 10px">
         <tr>
-            <th>id</th> <th>class</th><th>category</th><th>content</th><th>action/detail weight</th>
+            <th>ID</th> <th>class</th><th width="120px">category</th><th width="350px">content</th><th width="50px">action/detail weight</th>
         </tr>
     <?php
         if ($this->questions) {
             foreach($this->questions as $key => $value) {
-                echo '<tr>';
+                echo '<tr style="height:20px;">';
                 //echo '<td>' . htmlentities($value->note_text) . '</td>';
                 echo '<td>' . htmlentities($value->question_id) . '</td>';
                 echo '<td>' . htmlentities($value->question_class) . '</td>';
                 echo '<td>' . htmlentities($value->question_category) . '</td>';
-                echo '<td>' . htmlentities($value->question_content) . '</td>';
+                echo '<td>' . '<div class="textOverflow">' . htmlentities($value->question_content) . '</div>' . '</td>';
                 echo '<td>' . htmlentities($value->question_action_weight) . '/' . htmlentities($value->question_description_weight) . '</td>';
 
                 echo '<td><a href="'. URL . 'question/edit/' . $value->question_id.'">Edit</a></td>';

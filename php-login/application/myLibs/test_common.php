@@ -15,6 +15,29 @@ function fooo()
 
 }
 
+
+function display_EMP_tabel($array_emp_question, $category) {
+	foreach($array_emp_question as $key => $value) {
+	    if ($value->question_category == $category) {
+	        echo '<div class="EarnMorePointTableRow">
+	                  <div class="textOverflowEMP">'.
+	                		$value->question_summary .
+	        		 '</div>
+		              <div class="EarnMorePointTableData"> 
+		                    <p>'.
+		        			$value->percent_point.
+		        			'</p>    
+		              </div>
+		              <div class="EarnMorePointTableData">
+		                    <p> 
+		                        <a href="'. URL . 'emp_questionnaire/index/'. $value->question_id . '"> anwser </a>
+		                    </p>    
+		               </div>
+	            </div> ';
+	    }
+	}
+}
+
 function display_category_name($key)
 {
 	// TODO: why global not working??
@@ -81,12 +104,12 @@ function display_point_total($user_id, $category_id)
 
 						//echo '<div class="tableData">'
 							//echo '<p>';
-				            echo '<br>' . '<br>' . $rows["point"];
+				            echo '<br>'  . $rows["point"];
 				            echo '</p>'; 
 						echo '</div>';
 						echo '<div class="tableData">';
 							echo '<p>';
-				            echo '<br>' . '<br>' . $rows["total_possible"];
+				            echo '<br>' . $rows["total_possible"];
 
 }
 
@@ -107,6 +130,44 @@ function test_get_earn_more_point($user_id, $category_id)
 	$rows = test_get_db_table_user_point($user_id, $category_id);
 	return 100 - $rows["point"];
 }
+
+// function test_get_earn_more_point_question_summary($category_id)
+// {
+
+// function test_get_db_table_user_point ($user_id, $category_id)
+// {
+// 	$host="localhost"; // Host name 
+// 	$username="root"; // Mysql username 
+// 	$password="ZpCnGva0"; // Mysql password 
+// 	$db_name="test"; // Database name 
+// 	$tbl_name="wp_test_user_point_new"; // Table name 
+
+// 	// Connect to server and select databse.
+// 	mysql_connect("$host", "$username", "$password")or die("cannot connect"); 
+// 	mysql_select_db("$db_name")or die("cannot select DB");
+
+// 	// get value of id that sent from address bar 
+// 	//$id=$_GET['id'];
+// 	$sql="SELECT * FROM $tbl_name WHERE user_id='$user_id' and category_id='$category_id'";
+// 	//echo $sql;
+// 	$result=mysql_query($sql);
+
+// 	if (!$result) {
+// 	    echo "Could not successfully run query ($sql) from DB: " . mysql_error();
+// 	    mysql_close($db);
+// 	    // TODO:
+// 	    exit;
+// 	}
+
+// 	$rows=mysql_fetch_assoc($result);
+// 	//echo "<br />".$row[0]."<br />".$row[1]."<br />".$row[2]."<br />".$row[3]."<br />";
+// 	//echo "<br /> result:";
+// 	//echo "user_id(".$rows["user_id"].") point:".$rows["point"].".<br />";
+
+// 	//mysql_close($db);
+	
+// }
+
 
 
 function test_get_db_table_global_point ($user_id)
@@ -154,16 +215,16 @@ function display_global_point ($user_id)
 	}
 	
 
-	echo $global_point;
+	echo '<h1>' . $global_point . '</h1>';
 
 	// TODO:
 	if ($global_point < 50)
 	{
-		echo "<br /><br /> Generation 1";
+		echo "<h2> Generation 1 </h2>";
 	}
 	else
 	{
-		echo "<br /> Generation 2";
+		echo "<h2> Generation 2 </h2>";
 	}
 
 }
@@ -251,39 +312,49 @@ function test_get_db_table_question ($class)
 }
 
 function display_answer_radio_button_yes($question_id) {
-	echo '<input type="radio" name="answer'.$question_id.'" value="yes" checked> Yes    ';
-	echo '<input type="radio" name="answer'.$question_id.'" value="no"> No    ';
-	echo '<input type="radio" name="answer'.$question_id.'" value="n/a"> N/A    ';
+	echo '<input width="50px" type="radio" name="answer'.$question_id.'" value="yes" checked> <span class="inputRadio">Yes </span>';
+	echo '<input width="50px" type="radio" name="answer'.$question_id.'" value="no"> <span class="inputRadio">No </span>';
+	echo '<input width="50px" type="radio" name="answer'.$question_id.'" value="n/a"> <span class="inputRadio">N/A </span>';
 
 }
 
 function display_answer_radio_button_no($question_id) {
-	echo '<input type="radio" name="answer'.$question_id.'" value="yes" > Yes    ';
-	echo '<input type="radio" name="answer'.$question_id.'" value="no" checked> No    ';
-	echo '<input type="radio" name="answer'.$question_id.'" value="n/a"> N/A    ';
+	echo '<input type="radio" name="answer'.$question_id.'" value="yes" > <span class="inputRadio">Yes </span> ';
+	echo '<input type="radio" name="answer'.$question_id.'" value="no" checked> <span class="inputRadio">No </span> ';
+	echo '<input type="radio" name="answer'.$question_id.'" value="n/a"> <span class="inputRadio">N/A    ';
 }
 
 function display_answer_radio_button_na($question_id) {
-	echo '<input type="radio" name="answer'.$question_id.'" value="yes"> Yes   ';
-	echo '<input type="radio" name="answer'.$question_id.'" value="no"> No   ';
-	echo '<input type="radio" name="answer'.$question_id.'" value="n/a" checked> N/A   ';
+	echo '<input type="radio" name="answer'.$question_id.'" value="yes"> <span class="inputRadio">Yes</span>';
+	echo '<input type="radio" name="answer'.$question_id.'" value="no"> <span class="inputRadio">No</span>';
+	echo '<input type="radio" name="answer'.$question_id.'" value="n/a" checked> <span class="inputRadio">N/A</span>';
 }
 
 function display_answer_radio_button_none_default($question_id) {
-	echo '<input type="radio" name="answer'.$question_id.'" value="yes"> Yes   ';
-	echo '<input type="radio" name="answer'.$question_id.'" value="no"> No   ';
-	echo '<input type="radio" name="answer'.$question_id.'" value="n/a"> N/A   ';
+	echo '<input type="radio" name="answer'.$question_id.'" value="yes"> <span class="inputRadio">Yes</span>';
+	echo '<input type="radio" name="answer'.$question_id.'" value="no"> <span class="inputRadio">No</span>';
+	echo '<input type="radio" name="answer'.$question_id.'" value="n/a"> <span class="inputRadio">N/A</span>';
 }
 
 function display_questionnaire_table($class)
 {
+	echo '<div class="tableContainer">
+            <div class="tableRow">
+                <div class="tableHead"> 
+                    ASSESSMENT  
+                </div>
+                <div class="tableHead"> 
+                    ACTION   
+                </div>
+            </div> ';
+
 	$result = test_get_db_table_question($class);
 	while ($rows_question=mysql_fetch_assoc($result))
 	{
 		// TODO: check action+description weight > 0
 		echo '<div class="tableRow">';
 		echo '<div class="question">';
-		echo '<p> question'.$rows_question['question_id'].'  '. $rows_question['question_category'].': '.$rows_question['question_content'].'</p>';	
+		echo 'question'.$rows_question['question_id'].'  '. $rows_question['question_category'].': '.$rows_question['question_content'];	
 		echo '</div>';
 		echo '<div class="answer"> ';
 
@@ -313,6 +384,8 @@ function display_questionnaire_table($class)
 		echo '</div>';
 		echo '</div>';
 	}
+
+	echo '</div>';
 }
 
 

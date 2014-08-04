@@ -25,10 +25,23 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-2.0.3.min.js"></script>
     <script type="text/javascript" src="<?php echo URL; ?>public/js/application.js"></script>
 
+<!-- display float level in the sidebar in Javascript with special plugin-->
+    <style type="text/css">.floatBar{ position:relative !important; }</style>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo URL; ?>public/js/jquery.scroll-follow.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        $(".floatBar").scrollFollow({
+            offset: 156
+        });
+    });
+    </script>
+
+
     <!--[if IE 7 ]><link href="<?php bloginfo('template_directory'); ?>/ie7.css" rel="stylesheet" type="text/css" /><![endif]-->
     <?php wp_enqueue_script('swfobject'); ?>
     <?php wp_enqueue_script('jquery'); ?>
-    <?php wp_head(); ?>
+    <!-- <?php wp_head(); ?> -->
 </head>
 
 <body <?php body_class(); ?>>
@@ -66,25 +79,17 @@
 
     <?php if (Session::get('user_logged_in') == false):?>
     <ul id="header-bar">
-        <li><a href="<?php bloginfo('url'); ?>/php-login/login/index">login</a></li>
+        <li><a href="<?php bloginfo('url'); ?>/php-login/login/index">Login</a></li>
         <li><a href="<?php bloginfo('url'); ?>/register">Register</a>
         <li><a href="<?php bloginfo('url'); ?>/donate">Donate to this project</a></li>
-        
     </ul>
     <?php endif; ?>
 
-
+    <?php if (Session::get('user_logged_in') == true):?>
     <div class="php-login-header">
-        <div class="header_left_box">
+        <div class="header_right_box">
         <ul id="menu">
-        <!-- 
-            <li <?php if ($this->checkForActiveController($filename, "index")) { echo ' class="active" '; } ?> >
-                <a href="<?php echo URL; ?>index/index">Index</a>
-            </li>
-            <li <?php if ($this->checkForActiveController($filename, "help")) { echo ' class="active" '; } ?> >
-                <a href="<?php echo URL; ?>help/index">Help</a>
-            </li>
-             -->
+        
             <?php if (Session::get('user_logged_in') == true):?>
             <li <?php if ($this->checkForActiveController($filename, "dashboard")) { echo ' class="active" '; } ?> >
                 <a href="<?php echo URL; ?>dashboard/index">Dashboard</a>
@@ -125,9 +130,6 @@
                         <li <?php if ($this->checkForActiveController($filename, "login")) { echo ' class="active" '; } ?> >
                             <a href="<?php echo URL; ?>login/changeaccounttype">Change account type</a>
                         </li>
-                        <!-- <li <?php if ($this->checkForActiveController($filename, "login")) { echo ' class="active" '; } ?> >
-                            <a href="<?php echo URL; ?>login/uploadavatar">Upload an avatar</a>
-                        </li> -->
                         <li <?php if ($this->checkForActiveController($filename, "login")) { echo ' class="active" '; } ?> >
                             <a href="<?php echo URL; ?>login/editusername">Edit my username</a>
                         </li>
@@ -141,132 +143,41 @@
                 </li>
             <?php endif; ?>
  
-            <!-- for not logged in users -->
-            <!-- 
-            <?php if (Session::get('user_logged_in') == false):?>
-                <li <?php if ($this->checkForActiveControllerAndAction($filename, "login/index")) { echo ' class="active" '; } ?> >
-                    <a href="<?php echo URL; ?>login/index">Login</a>
-                </li>
-                <li <?php if ($this->checkForActiveControllerAndAction($filename, "login/register")) { echo ' class="active" '; } ?> >
-                    <a href="<?php echo URL; ?>login/register">Register</a>
-                </li>
-            <?php endif; ?> -->
         </ul>
         </div>
-
+<!-- 
         <?php if (Session::get('user_logged_in') == true): ?>
-            <div class="header_right_box">
+            <div class="header_left_box">
                 <div class="namebox">
                     Hello <?php echo Session::get('user_name'); ?> !
                 </div>
-                <!-- <div class="avatar">
-                    <?php if (USE_GRAVATAR) { ?>
-                        <img src='<?php echo Session::get('user_gravatar_image_url'); ?>'
-                             style='width:<?php echo AVATAR_SIZE; ?>px; height:<?php echo AVATAR_SIZE; ?>px;' />
-                    <?php } else { ?>
-                        <img src='<?php echo Session::get('user_avatar_file'); ?>'
-                             style='width:<?php echo AVATAR_SIZE; ?>px; height:<?php echo AVATAR_SIZE; ?>px;' />
-                    <?php } ?>
-                </div> -->
             </div>
         <?php endif; ?>
-
+ -->
         <div class="clear-both"></div>
+        
     </div>
-
-    <div id="sidebar">
-            112233
-    </div>
-
-<!-- 
-
-<?php echo bloginfo('stylesheet_url');  echo rand(); ?>
- -->
-<!-- 
-
-    <div class="debug-helper-box">
-        DEBUG HELPER: you are in the view: <?php echo $filename; ?>
-    </div>
-
-    <div class='title-box'>
-        <a href="<?php echo URL; ?>">My Application</a>
-    </div>
-
-    <div class="header">
-        <div class="header_left_box">
-        <ul id="menu">
-            <li <?php if ($this->checkForActiveController($filename, "index")) { echo ' class="active" '; } ?> >
-                <a href="<?php echo URL; ?>index/index">Index</a>
-            </li>
-            <li <?php if ($this->checkForActiveController($filename, "help")) { echo ' class="active" '; } ?> >
-                <a href="<?php echo URL; ?>help/index">Help</a>
-            </li>
-            <li <?php if ($this->checkForActiveController($filename, "overview")) { echo ' class="active" '; } ?> >
-                <a href="<?php echo URL; ?>overview/index">Overview</a>
-            </li>
-            <?php if (Session::get('user_logged_in') == true):?>
-            <li <?php if ($this->checkForActiveController($filename, "dashboard")) { echo ' class="active" '; } ?> >
-                <a href="<?php echo URL; ?>dashboard/index">Dashboard</a>
-            </li>
-            <?php endif; ?>
-            <?php if (Session::get('user_logged_in') == true):?>
-            <li <?php if ($this->checkForActiveController($filename, "note")) { echo ' class="active" '; } ?> >
-                <a href="<?php echo URL; ?>note/index">My Notes</a>
-            </li>
-            <?php endif; ?>
-
-            <?php if (Session::get('user_logged_in') == true):?>
-                <li <?php if ($this->checkForActiveController($filename, "login")) { echo ' class="active" '; } ?> >
-                    <a href="<?php echo URL; ?>login/showprofile">My Account</a>
-                    <ul class="sub-menu">
-                        <li <?php if ($this->checkForActiveController($filename, "login")) { echo ' class="active" '; } ?> >
-                            <a href="<?php echo URL; ?>login/changeaccounttype">Change account type</a>
-                        </li>
-                        <li <?php if ($this->checkForActiveController($filename, "login")) { echo ' class="active" '; } ?> >
-                            <a href="<?php echo URL; ?>login/uploadavatar">Upload an avatar</a>
-                        </li>
-                        <li <?php if ($this->checkForActiveController($filename, "login")) { echo ' class="active" '; } ?> >
-                            <a href="<?php echo URL; ?>login/editusername">Edit my username</a>
-                        </li>
-                        <li <?php if ($this->checkForActiveController($filename, "login")) { echo ' class="active" '; } ?> >
-                            <a href="<?php echo URL; ?>login/edituseremail">Edit my email</a>
-                        </li>
-                        <li <?php if ($this->checkForActiveController($filename, "login")) { echo ' class="active" '; } ?> >
-                            <a href="<?php echo URL; ?>login/logout">Logout</a>
-                        </li>
-                    </ul>
-                </li>
-            <?php endif; ?>
- -->
-            <!-- for not logged in users --><!-- 
-            <?php if (Session::get('user_logged_in') == false):?>
-                <li <?php if ($this->checkForActiveControllerAndAction($filename, "login/index")) { echo ' class="active" '; } ?> >
-                    <a href="<?php echo URL; ?>login/index">Login</a>
-                </li>
-                <li <?php if ($this->checkForActiveControllerAndAction($filename, "login/register")) { echo ' class="active" '; } ?> >
-                    <a href="<?php echo URL; ?>login/register">Register</a>
-                </li>
-            <?php endif; ?>
-        </ul>
-        </div>
-
-        <?php if (Session::get('user_logged_in') == true): ?>
-            <div class="header_right_box">
+    <?php endif; ?>
+    
+    <div id="sidebar" class="floatBar">
+        <?php if (Session::get('user_logged_in') == true):?>
+                
+            <div id="globalPoint" style = "text-align: center;">
                 <div class="namebox">
-                    Hello <?php echo Session::get('user_name'); ?> !
+                    <span>Hello, </span> <?php echo Session::get('user_name'); ?> 
                 </div>
-                <div class="avatar">
-                    <?php if (USE_GRAVATAR) { ?>
-                        <img src='<?php echo Session::get('user_gravatar_image_url'); ?>'
-                             style='width:<?php echo AVATAR_SIZE; ?>px; height:<?php echo AVATAR_SIZE; ?>px;' />
-                    <?php } else { ?>
-                        <img src='<?php echo Session::get('user_avatar_file'); ?>'
-                             style='width:<?php echo AVATAR_SIZE; ?>px; height:<?php echo AVATAR_SIZE; ?>px;' />
-                    <?php } ?>
-                </div>
+                <p>
+                
+                <br>
+                <h3> My Point </h3>
+                <h2>
+                    <?php
+                        require_once MYLIBS_PATH . 'test_common.php';
+                        //display_global_point($_SESSION['user_id']);
+                        display_global_point(4);
+                    ?>
+                </h2>
+                </p>
             </div>
         <?php endif; ?>
-
-        <div class="clear-both"></div>
     </div>
- -->

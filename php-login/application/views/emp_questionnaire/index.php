@@ -1,5 +1,15 @@
  <div class="content">
     <?php if ($this->emp_questionnaire) :  ?>
+
+    <div class="EMP_totalPoint">
+            <p>POINTS TOTAL</p>
+            <h1>
+                <?php
+                    echo $this->emp_questionnaire->percent_point;
+                    ?>
+            </h1>
+        </div>
+
     <div class = "test">
         <h1>Diversity protection</h1>
         <p><?php  echo $this->emp_questionnaire->question_summary; ?></p>
@@ -8,16 +18,8 @@
 <p>&nbsp;</p>
 
     <section id = "EarnMorePointDiversityProtection">
-        <div class="EMP_totalPoint">
-            <p>POINTS TOTAL</p>
-            <h1>
-                <?php
-                    require_once MYLIBS_PATH . 'test_common.php';
-                    echo test_get_earn_more_point(4,1);
-                ?>
-            </h1>
-        </div>
-        <div class="tableContainer">
+        
+        <!-- <div class="tableContainer">
             <div class="tableRow">
                 <div class="tableHead"> 
                     <p>INVESTMENT</p>   
@@ -47,11 +49,8 @@
                 </div>
             </div>  
             
-        </div>  
-        <br><br>
-        <div class = "EMP_resource">
-            <p> <?php echo $this->emp_questionnaire->resource; ?></p>
-        </div>
+        </div>   -->
+        <br>
         <div class = "EMP_content">
             <div class = "EMP_fullDescription">
                 <h3> FULL DESCRIPTION </h3>
@@ -68,6 +67,10 @@
                 </ul> 
                 <p> </p>
             </div>
+            <div class = "EMP_resource">
+                <h3>RESOURCE</h3>
+                <p> <?php echo $this->emp_questionnaire->resource; ?></p>
+            </div>
             <div>
                 <h3> To complete this initiative, you must answer the following question: </h3>
                 <p><?php echo $this->emp_questionnaire->percent_caption; ?> </p>
@@ -77,22 +80,22 @@
                 //echo $this->note->note_id; 
                 ?>">
                 <!-- <form action="BiosphericallyCorrect/handle.php" method="POST"> -->
-                    <select name='task1_process'>
+                    <select name='task1_process' style="margin-left: 50px">
                         <option>0~25%</option>
                         <option>25~50%</option>
                         <option>50~75%</option>
                         <option>75~100%</option>
                     </select>
                     <br><br><br>
-                    <input type="submit" value="Complete" />
+                    <input type="submit" value="Complete" style="margin-left: 25px"/>
 
 
                     <br><br><br>
-                    <h3>Comments.</h3>
+                    <h3>COMMENTS</h3>
                     <p>Please feel free to share any details or examples of your work for this initiative. Your responses will remain confidential.<br></p>
                     <textarea name="commentsEarnMorePointDiversityProtection" style="width: 600px; height: 150px;"></textarea><br>
                     <br><br>
-                    <input type="submit" value="Post my Comment" />
+                    <input type="submit" value="Post my Comment" style="margin-left: 25px" />
                 </form>
             </div>
         </div>
