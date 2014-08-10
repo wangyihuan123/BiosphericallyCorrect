@@ -110,7 +110,7 @@ div#globalPoint {
 	border-width:	2px;
 	border-style:	solid;*/
 
-	background: #ffffff  bottom right; 
+	background:   bottom right; 
 	background-color: #87CEFA;
 	font-size: 105%;
 	padding: 10px;
@@ -137,6 +137,14 @@ div#globalPoint {
 	float: right;
 }
 
+
+div.background-img {
+	background-image: url('../img/BiosphericallyCorrect.png');
+	background-size: 150px 150px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background: transparent;
+}
 
 
 div.question {

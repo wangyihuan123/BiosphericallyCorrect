@@ -169,14 +169,16 @@
                 <p>
                 
                 <br>
-                <h3> My Point </h3>
-                <h2>
-                    <?php
-                        require_once MYLIBS_PATH . 'test_common.php';
-                        //display_global_point($_SESSION['user_id']);
-                        display_global_point(4);
-                    ?>
-                </h2>
+                <div class="background-img">
+                    <h3> My Point </h3>
+                    <h2>
+                        <?php
+                            require_once MYLIBS_PATH . 'test_common.php';
+                            //display_global_point($_SESSION['user_id']);
+                            display_global_point(4);
+                        ?>
+                    </h2>
+                </div>
                 </p>
             </div>
         <?php endif; ?>

@@ -19,7 +19,9 @@
 
     <section id = "Dashboard">
         
-        <h3>MY PROGRESS</h3>
+        <h3>
+        <img src="<?php echo URL; ?>public/img/blog_chart.jpg" width="15px" height="15px">
+        MY PROGRESS</h3>
         <div class="tableContainer">
             <div class="tableRow">
                 <div class="tableHead"> 

@@ -28,6 +28,8 @@ class Controller
 
         // create a view object (that does nothing, but provides the view render() method)
         $this->view = new View();
+
+        
     }
 
     /**

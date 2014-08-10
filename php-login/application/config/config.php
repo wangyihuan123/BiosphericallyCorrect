@@ -41,7 +41,7 @@ define('VIEWS_PATH', DIRECTORY . '/php-login/application/views/');
 // don't forget to make this folder writable via chmod 775 or 777 (?)
 // the slash at the end is VERY important!
 define('AVATAR_PATH', DIRECTORY . '/php-login/public/avatars/');
-
+define('PUBLIC_PATH', DIRECTORY . '/php-login/public/');
 
 define('MYLIBS_PATH', DIRECTORY . '/php-login/application/myLibs/');
 
