@@ -19,37 +19,6 @@
 
     <section id = "EarnMorePointDiversityProtection">
         
-        <!-- <div class="tableContainer">
-            <div class="tableRow">
-                <div class="tableHead"> 
-                    <p>INVESTMENT</p>   
-                </div>
-                <div class="tableHead"> 
-                    <p>EFFORT LEVEL</p>   
-                </div>
-                <div class="tableHead"> 
-                    <p>SOCIAL BENEFIT</p>   
-                </div>
-                <div class="tableHead"> 
-                    <p>ENVIRONMENT BENEFIT</p>   
-                </div>
-            </div>  
-            <div class="tableRow">
-                <div class="tableData"> 
-                    4
-                </div>
-                <div class="tableData"> 
-                    3
-                </div>
-                <div class="tableData"> 
-                    3
-                </div>
-                <div class="tableData"> 
-                    4
-                </div>
-            </div>  
-            
-        </div>   -->
         <br>
         <div class = "EMP_content">
             <div class = "EMP_fullDescription">
@@ -69,7 +38,7 @@
             </div>
             <div class = "EMP_resource">
                 <h3>RESOURCE</h3>
-                <p> <?php echo $this->emp_questionnaire->resource; ?></p>
+                <p> <?php echo htmlentities($this->emp_questionnaire->resource); ?></p>
             </div>
             <div>
                 <h3> To complete this initiative, you must answer the following question: </h3>
@@ -87,7 +56,7 @@
                         <option>75~100%</option>
                     </select>
                     <br><br><br>
-                    <input type="submit" value="Complete" style="margin-left: 25px"/>
+                    <input class="php-login" type="submit" value="Complete" style="margin-left: 25px"/>
 
 
                     <br><br><br>
@@ -95,7 +64,7 @@
                     <p>Please feel free to share any details or examples of your work for this initiative. Your responses will remain confidential.<br></p>
                     <textarea name="commentsEarnMorePointDiversityProtection" style="width: 600px; height: 150px;"></textarea><br>
                     <br><br>
-                    <input type="submit" value="Post my Comment" style="margin-left: 25px" />
+                    <input class="php-login" type="submit" value="Post my Comment" style="margin-left: 25px" />
                 </form>
             </div>
         </div>

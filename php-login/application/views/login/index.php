@@ -3,7 +3,7 @@
     <!-- echo out the system feedback (error and success messages) -->
     <?php $this->renderFeedbackMessages(); ?>
 
-    <div class="login-default-box">
+    <div class="login-default-box php-login">
         <h1>Login</h1>
         <form action="<?php echo URL; ?>login/login" method="post">
                 <label>Username (or email)</label>

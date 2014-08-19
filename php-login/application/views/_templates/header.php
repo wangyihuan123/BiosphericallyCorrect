@@ -80,7 +80,8 @@
     <?php if (Session::get('user_logged_in') == false):?>
     <ul id="header-bar">
         <li><a href="<?php bloginfo('url'); ?>/php-login/login/index">Login</a></li>
-        <li><a href="<?php bloginfo('url'); ?>/register">Register</a>
+        <!-- <li><a href="<?php bloginfo('url'); ?>/register">Register</a> -->
+        <li><a href="<?php echo URL; ?>login/register">Register</a>
         <li><a href="<?php bloginfo('url'); ?>/donate">Donate to this project</a></li>
     </ul>
     <?php endif; ?>
@@ -89,6 +90,11 @@
     <div class="php-login-header">
         <div class="header_right_box">
         <ul id="menu">
+            <?php if (Session::get('user_logged_in') == true):?>
+            <li <?php if ($this->checkForActiveController($filename, "profile")) { echo ' class="active" '; } ?> >
+                <a href="<?php echo URL; ?>profile/index">Profile</a>
+            </li>
+            <?php endif; ?>
         
             <?php if (Session::get('user_logged_in') == true):?>
             <li <?php if ($this->checkForActiveController($filename, "dashboard")) { echo ' class="active" '; } ?> >
@@ -123,6 +129,7 @@
                 </li>
             <?php endif; ?>
 
+
             <?php if (Session::get('user_logged_in') == true):?>
                 <li <?php if ($this->checkForActiveController($filename, "login")) { echo ' class="active" '; } ?> >
                     <a href="<?php echo URL; ?>login/showprofile">My Account</a>
@@ -142,7 +149,10 @@
                     </ul>
                 </li>
             <?php endif; ?>
- 
+            
+            <li  >
+                <a href="<?php echo URL; ?>help/index">Help</a>
+            </li>
         </ul>
         </div>
 <!-- 
@@ -162,14 +172,16 @@
     <div id="sidebar" class="floatBar">
         <?php if (Session::get('user_logged_in') == true):?>
                 
-            <div id="globalPoint" style = "text-align: center;">
+            <div id="globalPoint_background">
+            <div class="globalPoint_front"  style = "">
                 <div class="namebox">
                     <span>Hello, </span> <?php echo Session::get('user_name'); ?> 
                 </div>
                 <p>
                 
                 <br>
-                <div class="background-img">
+                <div id="globalPoint">
+                   <!--  <h3 style="background-color: #f0f0f0"> My Point </h3> -->
                     <h3> My Point </h3>
                     <h2>
                         <?php
@@ -180,6 +192,7 @@
                     </h2>
                 </div>
                 </p>
+            </div>
             </div>
         <?php endif; ?>
     </div>

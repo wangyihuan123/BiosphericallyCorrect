@@ -13,14 +13,16 @@
     You can protect a whole section in your app within the according controller (here: controllers/dashboard.php)
     by placing <span style='font-style: italic;'>Auth::handleLogin();</span> into the constructor. -->
 
-
+    <div style="width: 100px;height: 100px;float: right; margin: 10px; background-color: grey">
+        <img src="<?php echo URL; ?>public/img/BiosphericallyCorrect.png" width="100px" height="100px" alt="">
+    </div>
     <h1>My Dashboard</h1>
     <br>
 
     <section id = "Dashboard">
         
         <h3>
-        <img src="<?php echo URL; ?>public/img/blog_chart.jpg" width="15px" height="15px">
+        <img src="<?php echo URL; ?>public/img/blog_chart.jpg" width="20px" height="20px" style="margin-right: 10px ">
         MY PROGRESS</h3>
         <div class="tableContainer">
             <div class="tableRow">

@@ -111,12 +111,12 @@ function producerRegistration($attributes) {
 
 		// Check if fields are valid
 //|| !isValidEmail($_POST['email'] 
-		if ( empty($_POST['first_name']) || empty($_POST['last_name']) || $_POST['sky'] != 'blue' ) {
+		// if ( empty($_POST['first_name']) || empty($_POST['last_name']) || $_POST['sky'] != 'blue' ) {
 
-			$message = '<h4 class="error">There are errors in your submission. Please ensure you have entered information for all fields correctly.</h4>';
+		// 	$message = '<h4 class="error">There are errors in your submission. Please ensure you have entered information for all fields correctly.</h4>';
 
-		} else {
-
+		// } else {
+				  {
 			// Add to database
 			$logo_url = $wp_upload_dir['url'].'/'.$_FILES['logo']['name'];
 			$product_image_url = $wp_upload_dir['url'].'/'.$_FILES['product_image']['name'];
@@ -238,7 +238,7 @@ function producerRegistration($attributes) {
 
 			// Add to Database
 			//$user_id = $_SESSION["user_id"];
-			addToDatabase($_POST);
+			// addToDatabase($_POST);
 			
 			$message = '<h4>Thank you. We will review your application and contact you shortly.</h4>
 						<p>Please note that processing will not take place until payment has been received and cleared.</p>

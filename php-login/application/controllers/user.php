@@ -35,7 +35,7 @@ class User extends Controller
         if (isset($user_id)) {
             $user_model = $this->loadModel('User');
             $this->view->user = $user_model->getUserProfile($user_id);
-            var_dump($this->view->user);
+            // var_dump($this->view->user);
             $this->view->render('user/showuserprofile');
         } else {
             header('location: ' . URL);

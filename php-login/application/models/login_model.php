@@ -357,6 +357,9 @@ class LoginModel
      */
     public function registerNewUser()
     {
+        // test
+        return true;
+
         // perform all necessary form checks
         if (!$this->checkCaptcha()) {
             $_SESSION["feedback_negative"][] = FEEDBACK_CAPTCHA_WRONG;
@@ -464,6 +467,34 @@ class LoginModel
         }
         // default return, returns only true of really successful (see above)
         return false;
+    }
+
+    
+
+    /**
+     * copy register form from _POST[] to return
+     * @return boolean gives back true if mail has been sent, gives back false if no mail could been sent
+     */
+    public function copyRegisterPost()
+    {
+        // var_dump($_POST);
+        $postValue['company'] = $_POST['company'];
+        $postValue['product_name'] = $_POST['product_name'];
+        $postValue['product']['description'] = $_POST['product']['description'];
+        $postValue['product']['country'] = $_POST['product']['country'];
+        $postValue['product']['availability'] = $_POST['product']['availability'];
+        $postValue['website'] = $_POST['website'];
+        $postValue['content']['diversity_protection'] = $_POST['content']['diversity_protection'];
+        $postValue['content']['green_ingredients'] = $_POST['content']['green_ingredients'];
+        $postValue['content']['positive_functionality'] = $_POST['content']['positive_functionality'];
+        $postValue['content']['eco_processes'] = $_POST['content']['eco_processes'];
+        $postValue['content']['trade_integrity'] = $_POST['content']['trade_integrity'];
+        $postValue['post_parent'] = $_POST['post_parent'];
+
+        // echo "<br /><br />";
+        // var_dump($postValue);
+
+        return $postValue;
     }
 
     /**

@@ -30,6 +30,8 @@
 
         <h1>Required Actions</h1>
         <p>You must complete these actions to attain a certification level.</p>
+        <hr />
+        <br />
         
         <form method="post" action="<?php echo URL; ?>questionnaire/editSave/<?php 
         echo 4;
@@ -41,6 +43,26 @@
         <?php
             display_questionnaire_table("BC1");
         ?>
+
+
+        <div class="tableRow">
+            <div class="question"> 
+                What percentage of your workforce are women, people of color, people with disabilities, or from low-income communities?  
+            </div>
+            <div class="answer"> 
+                <select name='answer_process' style="width: 100px">
+                    <option>-select-</option>
+                    <option selected>0~25%</option>
+                    <option>25~50%</option>
+                    <option>50~75%</option>
+                    <option>75~100%</option>
+                </select>   
+                <p style="padding-left:0px;">Please describe the detail</p>
+                <textarea name="answer_detail" style="width: 300px; height: 150px;"></textarea>
+            </div>
+        </div> 
+
+
 
         <br>
         <h3><strong>Generation 2</strong></h3>

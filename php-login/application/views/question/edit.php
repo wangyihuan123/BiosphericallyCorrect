@@ -8,10 +8,10 @@
         <form method="post" action="<?php echo URL; ?>question/editSave/<?php echo $this->question->question_id; ?>">
             <!-- <label>Change text of question: </label> -->
             
-            <table>
+            <table class="table_vertical_align_top">
                 <tr>
                     <td>
-                        <div class = "test">ID:</div>
+                        ID:
                     </td>
                     <td>
                         <input type="text" name="question_id" size="10" value="<?php echo $this->question->question_id; ?>" /> (1~100)
@@ -99,7 +99,7 @@
 
             <br>
             <br>
-            <input type="submit" value='Change' />
+            <input class="php-login" type="submit" value='Change' />
         </form>
     <?php } else { ?>
         <p>This question does not exist.</p>

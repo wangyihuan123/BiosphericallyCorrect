@@ -291,59 +291,48 @@ ul#menu li:hover ul.sub-menu {
 }
 /* input boxes */
 /* html5 reset. this is necessary to properly align input fields in html5 */
-input, select, textarea {
+.php-login input, select, textarea {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }
 
-label {
+.php-login label {
     display: block;
     margin-bottom: 5px;
     line-height: 20px;
 }
 
-input {
+.php-login input {
     display: block;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     min-width: 200px;
-    padding: 10px;
+    padding: 5px;
 }
 
 
-input[type="radio"] {
+.php-login input[type="radio"] {
     padding: 20px !important;
     display: inline;
-    /*width: 50px;*/
 }
 
-input[type="text"] {
+.php-login input[type="text"] {
     display: inline;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+.php-login input[type="text"],
+.php-login input[type="email"],
+.php-login input[type="password"] {
     border: 1px solid #ddd;
     color: #555;
     font-weight: bold;
-    /*padding: 10px;    */
-
-    /*
-    border: 0;
-    background-color: #eaedf2;
-    color: #777;
-    font-weight: bold;
-    padding: 15px;
-    */
 }
 
-input[type="submit"] {
+.php-login input[type="submit"] {
     border: 0;
     background-color: #008fd5;
     color: #fff;
     font-weight: bold;
-    /*padding: 10px;*/
     cursor: pointer;
 }
 .remember-me-checkbox {

@@ -59,7 +59,7 @@ class Earnmorepoint extends Controller
      */
     public function edit($question_id)
     {
-        echo "question_id:" . $question_id;
+        // echo "question_id:" . $question_id;
         if (isset($question_id)) {
             // get the note that you want to edit (to show the current content)
             $earnmorepoint_model = $this->loadModel('Earnmorepoint');

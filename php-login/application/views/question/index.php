@@ -54,10 +54,10 @@
         <h2>Add a question: </h2>
         <!-- <form action="adminHandle.php" method="post"> -->
         <form method="post" action="<?php echo URL; ?>question/create/<?php /*echo $this->ratingsystem->question_id; */?>">
-            <table>
+            <table class="table_vertical_align_top">
                 <tr>
                     <td>
-                        <div class = "test">ID:</div>
+                        ID:
                     </td>
                     <td>
                         <input type="text" name="question_id" size="10"/> (1~100)
@@ -127,7 +127,7 @@
 
              
             <br>
-            <input type="submit" value="Submit" />
+            <input class="php-login" type="submit" value="Submit" />
         </form>
 
 

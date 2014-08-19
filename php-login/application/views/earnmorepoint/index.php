@@ -41,12 +41,12 @@
         <h2>Add an Earn More Point Question </h2>
 
 
-        <form method="post" action="<?php echo URL; ?>earnmorepoint/create">
+        <form  class="php-login" method="post" action="<?php echo URL; ?>earnmorepoint/create">
         
-            <table>
+            <table class="table_vertical_align_top" >
                 <tr>
                     <td>
-                        <div class = "test">ID:</div>
+                        ID:
                     </td>
                     <td>
                         <input type="text" name="question_id" size="10"/> (1~100)
@@ -143,7 +143,7 @@
             </table> 
             <br>
             <br>
-            <input type="submit" value="Submit" />
+            <input class="php-login" type="submit" value="Submit" />
         </form>
 
 

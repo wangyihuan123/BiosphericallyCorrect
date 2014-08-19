@@ -30,7 +30,7 @@ function display_EMP_tabel($array_emp_question, $category) {
 		              </div>
 		              <div class="EarnMorePointTableData">
 		                    <p> 
-		                        <a href="'. URL . 'emp_questionnaire/index/'. $value->question_id . '"> anwser </a>
+		                        <a href="'. URL . 'emp_questionnaire/index/'. $value->question_id . ' style="font-syle:italic"> Anwser </a>
 		                    </p>    
 		               </div>
 	            </div> ';
@@ -220,11 +220,12 @@ function display_global_point ($user_id)
 	// TODO:
 	if ($global_point < 50)
 	{
-		echo "<h2> Generation 1 </h2>";
+		echo '<h2> Generation 1 </h2>';
+		// echo '<h2 style="background-color: #e5e5e5"> Generation 1 </h2>';
 	}
 	else
 	{
-		echo "<h2> Generation 2 </h2>";
+		echo '<h2> Generation 2 </h2>';
 	}
 
 }
@@ -294,11 +295,8 @@ function test_get_db_table_question ($class)
 	}
 
 	if (mysql_num_rows($result) == 0) {
-	    echo "No rows found, nothing to print so am exiting";
+	    //echo "No rows found, nothing to print so am exiting";
 
-	    //TODO:
-	    mysql_close($db);
-	    exit;
 	}
 	//$rows=mysql_fetch_array($result);
 	
@@ -354,7 +352,8 @@ function display_questionnaire_table($class)
 		// TODO: check action+description weight > 0
 		echo '<div class="tableRow">';
 		echo '<div class="question">';
-		echo 'question'.$rows_question['question_id'].'  '. $rows_question['question_category'].': '.$rows_question['question_content'];	
+		// echo 'question'.$rows_question['question_id'].'  '. $rows_question['question_category'].': '.$rows_question['question_content'];	
+		echo $rows_question['question_content'];	
 		echo '</div>';
 		echo '<div class="answer"> ';
 
@@ -375,7 +374,7 @@ function display_questionnaire_table($class)
 		echo '<br>';
 
 		if ($rows_question['question_description_weight'] > 0) {
-			echo '<p>'.$rows_question['question_description_caption'].'</p>';
+			echo '<p style="padding-left:0px;">'.$rows_question['question_description_caption'].'</p>';
 			echo '<textarea name="answer_detail'.$rows_question['question_id'].'" style="width: 300px; height: 150px;">'.$rows_answer['description'].'</textarea>';
 			
 			//echo "<br>"."<br>"."answer_detail".$rows_question['question_id']."<br>";

@@ -55,7 +55,7 @@ class Login extends Controller
         $login_model = $this->loadModel('Login');
         $login_model->logout();
         // redirect user to base URL
-        header('location: ' . URL);
+        header('location: ' . URL. 'help/index');
     }
 
     /**
@@ -207,13 +207,29 @@ class Login extends Controller
     {
         $login_model = $this->loadModel('Login');
         $registration_successful = $login_model->registerNewUser();
-
+        
+        // 
         if ($registration_successful == true) {
-            header('location: ' . URL . 'login/index');
+            // header('location: ' . URL . 'login/registrationsuccess');
+            //$this->view->$postValue = array();
+            $this->view->postValue = $login_model->copyRegisterPost();
+            $this->view->render('login/registrationsuccess');
         } else {
             header('location: ' . URL . 'login/register');
         }
     }
+
+    // /**
+    //  * Register Success page
+    //  * Show the register information. 
+    //  */
+    // function registrationsuccess()
+    // {
+    //     $login_model = $this->loadModel('Login');
+
+    //     $this->view->render('login/registrationsuccess');
+    // }
+
 
     /**
      * Verify user after activation mail link opened

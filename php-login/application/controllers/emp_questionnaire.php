@@ -26,9 +26,9 @@ class Emp_Questionnaire extends Controller
             // get the note that you want to edit (to show the current content)
             $emp_questionnaire_model = $this->loadModel('Emp_Questionnaire');
             $this->view->emp_questionnaire = $emp_questionnaire_model->getEmpQuestion($question_id);
-            var_dump($this->view->emp_questionnaire);
+            // var_dump($this->view->emp_questionnaire);
             $this->view->emp_answer = $emp_questionnaire_model->getEmpAnswer($question_id);
-            var_dump($this->view->emp_answer);
+            // var_dump($this->view->emp_answer);
             $this->view->render('emp_questionnaire/index');
         } else {
             // TODO: should be error
@@ -47,7 +47,7 @@ class Emp_Questionnaire extends Controller
         // now, we suppose $user_id is always 4
         //$user_id = 4;
 
-        var_dump($_POST);
+        // var_dump($_POST);
 
         //if (isset($_POST['note_text']) && isset($user_id)) {
         {
