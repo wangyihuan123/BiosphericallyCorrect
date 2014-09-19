@@ -1,4 +1,4 @@
-
+<div class="container">
 
 <div class="content">
     <h1>Questions Admin</h1>
@@ -9,10 +9,20 @@
 
     <h2 style="margin-top: 50px;">List of all questions</h2>
 
-    <table style="width:700px;margin-left: 10px">
+<!--     <table style="width:700px;margin-left: 10px">
         <tr>
             <th>ID</th> <th>class</th><th width="120px">category</th><th width="350px">content</th><th width="50px">action/detail weight</th>
-        </tr>
+        </tr> -->
+
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                    <th>ID</th><th>class</th><th width="120px">category</th><th width="350px">content</th><th width="50px">action/detail weight</th>
+                    </tr>
+                </thead>
+                <tbody>
     <?php
         if ($this->questions) {
             foreach($this->questions as $key => $value) {
@@ -32,20 +42,9 @@
             echo 'No questions yet. Create some !';
         }
     ?>
-    </table>
-<!-- 
-    <div class = "test">
-        <p>Question lists:</p>
-        <table> 
-            <tr>
-                <th>id</th> <th>class</th><th>category</th><th>caption</th><th>content</th><th>action weight</th><th>detail weight</th>
-            </tr>
-            <?php
-                require_once (MYLIBS_PATH . "test_common.php");
-                display_question_table();
-            ?>
-        </table>
-    </div> -->
+            </table>
+        </div>
+    </div>
 
     <p>&nbsp;</p>
     
@@ -135,4 +134,5 @@
     </section>
 
 
+</div>
 </div>
