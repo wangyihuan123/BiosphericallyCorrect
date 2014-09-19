@@ -37,6 +37,19 @@
     });
     </script>
 
+    <!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
+    <!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
+    <!--script src="js/less-1.3.3.min.js"></script-->
+    <!--append ‘#!watch’ to the browser URL, then refresh the page. -->
+    
+    <link href="<?php echo URL; ?>public/css/bootstrap.min.css" rel="stylesheet">
+  
+    <script type="text/javascript" src="<?php echo URL; ?>public/js/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo URL; ?>public/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?php echo URL; ?>public/js/scripts.js"></script>
+
+
+
 
     <!--[if IE 7 ]><link href="<?php bloginfo('template_directory'); ?>/ie7.css" rel="stylesheet" type="text/css" /><![endif]-->
     <?php wp_enqueue_script('swfobject'); ?>
@@ -197,4 +210,3 @@
         <?php endif; ?>
     </div>
 
-    
