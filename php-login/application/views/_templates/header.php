@@ -42,7 +42,7 @@
     <!--script src="js/less-1.3.3.min.js"></script-->
     <!--append ‘#!watch’ to the browser URL, then refresh the page. -->
     
-    <link href="<?php echo URL; ?>public/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>public/css/bootstrap.css?<?php echo rand(); ?>" rel="stylesheet">
   
     <script type="text/javascript" src="<?php echo URL; ?>public/js/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo URL; ?>public/js/bootstrap.min.js"></script>

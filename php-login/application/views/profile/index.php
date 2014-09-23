@@ -5,9 +5,9 @@
     <div id="public_profile">
         <div id="profile_head">
             <div id="profile_head_right">
-                <h2>Contact Information</h2>
-                <h3>26 Airedale St.</h3>
-                <h3>Auckland, VA 1010</h3>
+                <h3>Contact Information</h3>
+                <h4>26 Airedale St.</h4>
+                <h4>Auckland, VA 1010</h4>
             </div>
         </div>
 

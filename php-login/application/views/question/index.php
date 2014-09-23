@@ -3,7 +3,7 @@
 
 <div class="container">
     <div class="row clearfix">
-        <div class="col-md-12 column">
+        <div class="col-md-7 column">
             <table class="table table-hover table-bordered">
                 <thead>
                     <tr>
