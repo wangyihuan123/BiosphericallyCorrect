@@ -215,17 +215,17 @@ function display_global_point ($user_id)
 	}
 	
 
-	echo '<h1>' . $global_point . '</h1>';
+	echo '<h2>' . $global_point . '</h2>';
 
 	// TODO:
 	if ($global_point < 50)
 	{
-		echo '<h2> Generation 1 </h2>';
+		echo '<h4> Generation 1 </h4>';
 		// echo '<h2 style="background-color: #e5e5e5"> Generation 1 </h2>';
 	}
 	else
 	{
-		echo '<h2> Generation 2 </h2>';
+		echo '<h4> Generation 2 </h4>';
 	}
 
 }

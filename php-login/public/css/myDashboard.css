@@ -97,35 +97,45 @@ div.EarnMorePointTableData {
 span.inputRadio {
 	padding-right: 50px;
 }
+div#globalPoint_frame {
+	/*background-color: #87CEFA;*/
+	/*position: absolute;*/
+	float: right;
+	width: 200px;
+	height: 200px;
+}
 
 div#globalPoint_background {
 	width: 200px;
 	height: 200px;
 	float: right;
-	background-color: #87CEFA;
-
-	background-image:  url('../img/BiosphericallyCorrect.png'); 
+	
+	background-image:  url('../img/BiosphericallyCorrect.png') ; 
 	background-repeat: no-repeat;
-	opacity:0.8;
+	border-radius: 50%;
+	opacity:0.5;
+}
+div#globalPoint_front {
+	position: absolute;
+	float: right;
+	width: 200px;
+	height: 200px;
+	text-align: center;
 }
 
-div.globalPoint_front {
-	text-align: center;
-	opacity:1.0;
-}
 div#globalPoint {
 
 /*	border-color:	black;
 	border-width:	2px;
 	border-style:	solid;*/
 	
-	opacity: 1.0;
-	font-size: 105%;
-	color: black;
-	padding: 10px;
+	/*opacity: 1.0;*/
+	/*font-size: 105%;*/
+	color: red;
+	/*padding: 10px;*/
 	/*margin: 0px 10px 10px 10px;*/
-	width: 180px; 
-	float: right;
+	/*width: 180px; */
+	/*float: right;*/
 }
 
 
@@ -312,13 +322,14 @@ div#profile_info {
 
 	/*border: thick outset #00ff00;*/
 }
-div#profile_image {
+img#profile_image {
 	margin-top: 20px;
 	float:right;
 	/*background: url("../img/badge1.png");*/
 	width: 160px;
 	height: 160px;
-	background-color: white;
+
+	/*background-color: white;*/
 	/*border: solid;*/
 }
 div#profile_logo {

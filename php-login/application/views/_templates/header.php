@@ -22,12 +22,12 @@
 
     
     <!-- from php-login, in case you wonder: That's the cool-kids-protocol-free way to load jQuery -->
-    <script type="text/javascript" src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+    <!-- <script type="text/javascript" src="//code.jquery.com/jquery-2.0.3.min.js"></script> -->
     <script type="text/javascript" src="<?php echo URL; ?>public/js/application.js"></script>
 
 <!-- display float level in the sidebar in Javascript with special plugin-->
     <style type="text/css">.floatBar{ position:relative !important; }</style>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> -->
     <script type="text/javascript" src="<?php echo URL; ?>public/js/jquery.scroll-follow.js"></script>
     <script type="text/javascript">
     $(function(){
@@ -185,28 +185,32 @@
     <div id="sidebar" class="floatBar">
         <?php if (Session::get('user_logged_in') == true):?>
                 
-            <div id="globalPoint_background">
-            <div class="globalPoint_front"  style = "">
-                <div class="namebox">
-                    <span>Hello, </span> <?php echo Session::get('user_name'); ?> 
+            <div id="globalPoint_frame">
+                <div id="globalPoint_background"></div>
+                <div id="globalPoint_front">
+                    <div id="namebox">
+                        <span>Hello, </span> <?php echo Session::get('user_name'); ?> 
+                    </div>
+                    <p>
+                    
+                    <br>
+                    <div id="globalPoint">
+                       <!--  <h3 style="background-color: #f0f0f0"> My Point </h3> -->
+                       <br><br>
+                        <h5> My Point </h5>
+
+                        <h4>
+                            <?php
+                                require_once MYLIBS_PATH . 'test_common.php';
+                                //display_global_point($_SESSION['user_id']);
+                                display_global_point(4);
+                            ?>
+                        </h4>
+                    </div>
+                    </p>
                 </div>
-                <p>
-                
-                <br>
-                <div id="globalPoint">
-                   <!--  <h3 style="background-color: #f0f0f0"> My Point </h3> -->
-                    <h3> My Point </h3>
-                    <h2>
-                        <?php
-                            require_once MYLIBS_PATH . 'test_common.php';
-                            //display_global_point($_SESSION['user_id']);
-                            display_global_point(4);
-                        ?>
-                    </h2>
-                </div>
-                </p>
             </div>
-            </div>
+            
         <?php endif; ?>
     </div>
 
