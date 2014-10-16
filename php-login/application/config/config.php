@@ -179,7 +179,7 @@ define("PHPMAILER_DEBUG_MODE", 0);
 // use SMTP or basic mail() ? SMTP is strongly recommended
 define("EMAIL_USE_SMTP", true);
 // name of your host
-define("EMAIL_SMTP_HOST", 'ssl://smtp.gmail.com');
+define("EMAIL_SMTP_HOST", 'smtp.gmail.com');
 // leave this true until your SMTP can be used without login
 define("EMAIL_SMTP_AUTH", true);
 // SMTP provider username
@@ -187,9 +187,9 @@ define("EMAIL_SMTP_USERNAME", 'wangyihuan123@gmail.com');
 // SMTP provider password
 define("EMAIL_SMTP_PASSWORD", 'comeonbaby123');
 // SMTP provider port
-define("EMAIL_SMTP_PORT", 465);
+define("EMAIL_SMTP_PORT", 587);
 // SMTP encryption, usually SMTP providers use "tls" or "ssl", for details see the PHPMailer manual
-define("EMAIL_SMTP_ENCRYPTION", 'ssl');
+define("EMAIL_SMTP_ENCRYPTION", 'tls');
 
 /*
 // Options: 0 = off, 1 = commands, 2 = commands and data, perfect to see SMTP errors, see the PHPMailer manual for more
@@ -232,14 +232,14 @@ define("EMAIL_SMTP_ENCRYPTION", 'ssl');
  * define("EMAIL_VERIFICATION_CONTENT", "Please click on this link to activate your account:");
  */
 define("EMAIL_PASSWORD_RESET_URL", URL . "login/verifypasswordreset");
-define("EMAIL_PASSWORD_RESET_FROM_EMAIL", "no-reply@example.com");
+define("EMAIL_PASSWORD_RESET_FROM_EMAIL", "wangyihuan123@gmail.com");
 define("EMAIL_PASSWORD_RESET_FROM_NAME", "My Project");
 define("EMAIL_PASSWORD_RESET_SUBJECT", "Password reset for PROJECT XY");
 define("EMAIL_PASSWORD_RESET_CONTENT", "Please click on this link to reset your password: ");
 
 define("EMAIL_VERIFICATION_URL", URL . "login/verify");
-define("EMAIL_VERIFICATION_FROM_EMAIL", "no-reply@example.com");
-define("EMAIL_VERIFICATION_FROM_NAME", "My Project");
+define("EMAIL_VERIFICATION_FROM_EMAIL", "wangyihuan123@gmail.com");
+define("EMAIL_VERIFICATION_FROM_NAME", "Biospherically Correct");
 define("EMAIL_VERIFICATION_SUBJECT", "Account activation for PROJECT XY");
 define("EMAIL_VERIFICATION_CONTENT", "Please click on this link to activate your account: ");
 

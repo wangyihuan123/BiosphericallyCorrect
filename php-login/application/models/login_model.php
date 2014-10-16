@@ -66,8 +66,12 @@ class LoginModel
         // block login attempt if somebody has already failed 3 times and the last login attempt is less than 30sec ago
         if (($result->user_failed_logins >= 3) AND ($result->user_last_failed_login > (time()-30))) {
             $_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_WRONG_3_TIMES;
+
             return false;
         }
+
+        // echo "$result->user_password_hash : ";
+        // echo $_POST['user_password'];
 
         // check if hash of provided password matches the hash in the database
         if (password_verify($_POST['user_password'], $result->user_password_hash)) {
@@ -130,6 +134,7 @@ class LoginModel
             return true;
 
         } else {
+
             // increment the failed login counter for that user
             $sql = "UPDATE users
                     SET user_failed_logins = user_failed_logins+1, user_last_failed_login = :user_last_failed_login
@@ -535,6 +540,27 @@ class LoginModel
         $mail->AddAddress($user_email);
         $mail->Subject = EMAIL_VERIFICATION_SUBJECT;
         $mail->Body = EMAIL_VERIFICATION_CONTENT . EMAIL_VERIFICATION_URL . '/' . urlencode($user_id) . '/' . urlencode($user_activation_hash);
+
+// $mail->IsSMTP();  // telling the class to use SMTP
+$mail->SMTPDebug = 1;   // 1 = errors and messages
+                        // 2 = messages only
+
+// $mail->Host = "smtp.gmail.com";
+// $mail->From     = "wangyihuan123@gmail.com";
+// $mail->AddAddress("wangyihuan821030@126.com");
+// $mail->Username = "wangyihuan123@gmail.com";
+// $mail->Password = "comeonbaby123";
+$mail->Mailer = "smtp";
+// $mail->SMTPAuth = true;
+// $mail->Port = 587; 
+// $mail->SMTPSecure = 'tls';
+// // $mail->Port = 465;
+// // $mail->SMTPSecure = 'ssl';
+
+
+// $mail->Subject  = "First PHPMailer Message";
+// $mail->Body     = "Hi! \n\n This is my first e-mail sent through PHPMailer.";
+// $mail->WordWrap = 50;
 
         // final sending and check
         if($mail->Send()) {
