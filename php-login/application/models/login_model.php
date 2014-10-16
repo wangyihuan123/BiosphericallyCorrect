@@ -357,8 +357,7 @@ class LoginModel
      */
     public function registerNewUser()
     {
-        // test
-        return true;
+        
 
         // perform all necessary form checks
         if (!$this->checkCaptcha()) {
@@ -601,6 +600,7 @@ class LoginModel
         // the image url like above but with an additional <img src .. /> around, write to session
         Session::set('user_gravatar_image_tag', $image_url_with_tag);
     }
+
 
     /**
      * Gets the user's avatar file path

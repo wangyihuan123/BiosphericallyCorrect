@@ -5,4 +5,8 @@
     <?php $this->renderFeedbackMessages(); ?>
 
     <a href="<?php echo URL; ?>login/index">Go to login</a>
+
+    <p>please finish your profile</p>
+
+	    
 </div>

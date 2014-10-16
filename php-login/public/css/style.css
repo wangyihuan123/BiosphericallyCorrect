@@ -349,7 +349,7 @@ ul#menu li:hover ul.sub-menu {
     display: block;
     /*width: 200px;*/
     color: #999;
-    font-size: 11px;
+    font-size: 14px;
 
 }
 
@@ -379,7 +379,7 @@ a.facebook-register-button:hover {
 .register-default-box,
 .register-facebook-box {
     display: inline-block;
-    width: 300px;
+    width: 600px;
     vertical-align: top;
 }
 

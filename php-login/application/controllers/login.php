@@ -219,16 +219,16 @@ class Login extends Controller
         }
     }
 
-    // /**
-    //  * Register Success page
-    //  * Show the register information. 
-    //  */
-    // function registrationsuccess()
-    // {
-    //     $login_model = $this->loadModel('Login');
+    /**
+     * Register Success page
+     * Show the register information. 
+     */
+    function registrationsuccess()
+    {
+        $login_model = $this->loadModel('Login');
 
-    //     $this->view->render('login/registrationsuccess');
-    // }
+        $this->view->render('login/registrationsuccess');
+    }
 
 
     /**
