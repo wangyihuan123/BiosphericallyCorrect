@@ -27,4 +27,14 @@ class Dashboard extends Controller
         $this->view->earnmorepoint = $earnmorepoint_model->getAllEarnmorepoints();
         $this->view->render('dashboard/index');
     }
+
+    /**
+     * This method controls what happens when you move to /dashboard/show in your app.
+     */
+    function show()
+    {
+        $earnmorepoint_model = $this->loadModel('Earnmorepoint');
+        $this->view->earnmorepoint = $earnmorepoint_model->getAllEarnmorepoints();
+        $this->view->render('dashboard/show');
+    }
 }

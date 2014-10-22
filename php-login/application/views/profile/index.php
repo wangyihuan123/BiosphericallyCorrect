@@ -2,7 +2,7 @@
 <!-- 
     <img src="<?php bloginfo('template_directory'); ?>/images/flash_<?php echo (is_front_page()) ? 'start' : 'end'; ?>.jpg" width="960" height="200" id="banner" />
  -->
- 
+ <!-- <h1>TODO: use user id to display!</h1> -->
     <div id="public_profile">
         <div id="profile_head">
             <div id="profile_head_right">

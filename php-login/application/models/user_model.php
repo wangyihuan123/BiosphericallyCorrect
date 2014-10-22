@@ -55,7 +55,9 @@ class UserModel
      */
     public function getUserProfile($user_id)
     {
-        $sql = "SELECT user_id, user_name, user_email, user_active, user_has_avatar
+        // $sql = "SELECT user_id, user_name, user_email, user_active, user_has_avatar
+        //         FROM users WHERE user_id = :user_id";
+        $sql = "SELECT *
                 FROM users WHERE user_id = :user_id";
         $sth = $this->db->prepare($sql);
         $sth->execute(array(':user_id' => $user_id));
@@ -120,40 +122,6 @@ class UserModel
         }
         // default return
         return null;
-    }
-
-    public function editSave($user_id, $data)
-    {
-
-        // // clean the input to prevent for example javascript within the notes.
-        // $note_text = strip_tags($note_text);
-
-        // $sql = "UPDATE notes SET note_text = :note_text WHERE note_id = :note_id AND user_id = :user_id";
-        // $query = $this->db->prepare($sql);
-        // $query->execute(array(':note_id' => $note_id, ':note_text' => $note_text, ':user_id' => $_SESSION['user_id']));
-
-        // $count =  $query->rowCount();
-        // if ($count == 1) {
-        //     return true;
-        // } else {
-        //     $_SESSION["feedback_negative"][] = FEEDBACK_NOTE_EDITING_FAILED;
-        // }
-        // // default return
-        // return false;
-
-        global $wpdb;
-        $wpdb->show_errors();
-        
-        $wp_upload_dir = wp_upload_dir();
-
-        $logo_url = $wp_upload_dir['url'].'/'.$_FILES['logo']['name'];
-        // $product_image_url = $wp_upload_dir['url'].'/'.$_FILES['product_image']['name']; 
-
-        echo "logo_url:" . $logo_url . "<br>";
-        // echo "product_image_url:" . $product_image_url . "<br>";
-
-        exit;
-
     }
 
 }

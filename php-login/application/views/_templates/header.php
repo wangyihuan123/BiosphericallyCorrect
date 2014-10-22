@@ -25,17 +25,6 @@
     <!-- <script type="text/javascript" src="//code.jquery.com/jquery-2.0.3.min.js"></script> -->
     <script type="text/javascript" src="<?php echo URL; ?>public/js/application.js"></script>
 
-<!-- display float level in the sidebar in Javascript with special plugin-->
-    <style type="text/css">.floatBar{ position:relative !important; }</style>
-    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> -->
-    <script type="text/javascript" src="<?php echo URL; ?>public/js/jquery.scroll-follow.js"></script>
-    <script type="text/javascript">
-    $(function(){
-        $(".floatBar").scrollFollow({
-            offset: 156
-        });
-    });
-    </script>
 
     <!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
     <!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
@@ -48,7 +37,18 @@
     <script type="text/javascript" src="<?php echo URL; ?>public/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo URL; ?>public/js/scripts.js"></script>
 
+<!-- display float level in the sidebar in Javascript with special plugin-->
+    <style type="text/css">.floatBar{ position:relative !important; }</style>
+    
 
+    <script type="text/javascript" src="<?php echo URL; ?>public/js/jquery.scroll-follow.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        $(".floatBar").scrollFollow({
+            offset: 156
+        });
+    });
+    </script>
 
 
     <!--[if IE 7 ]><link href="<?php bloginfo('template_directory'); ?>/ie7.css" rel="stylesheet" type="text/css" /><![endif]-->
@@ -148,6 +148,9 @@
                     <a href="<?php echo URL; ?>login/showprofile">My Account</a>
                     <ul class="sub-menu">
                         <li <?php if ($this->checkForActiveController($filename, "login")) { echo ' class="active" '; } ?> >
+                            <a href="<?php echo URL. 'profile/edit/'. $_SESSION['user_id']; ?>">Edit Organization Profile</a>
+                        </li>
+                        <li <?php if ($this->checkForActiveController($filename, "login")) { echo ' class="active" '; } ?> >
                             <a href="<?php echo URL; ?>login/changeaccounttype">Change account type</a>
                         </li>
                         <li <?php if ($this->checkForActiveController($filename, "login")) { echo ' class="active" '; } ?> >
@@ -188,15 +191,16 @@
             <div id="globalPoint_frame">
                 <div id="globalPoint_background"></div>
                 <div id="globalPoint_front">
-                    <div id="namebox">
+
+                    <br>
+                    <div id="namebox" style="font-size:12px;">
                         <span>Hello, </span> <?php echo Session::get('user_name'); ?> 
                     </div>
                     <p>
                     
-                    <br>
                     <div id="globalPoint">
                        <!--  <h3 style="background-color: #f0f0f0"> My Point </h3> -->
-                       <br><br>
+                       <!-- <br> -->
                         <h5> My Point </h5>
 
                         <h4>
@@ -205,6 +209,7 @@
                                 //display_global_point($_SESSION['user_id']);
                                 display_global_point(4);
                             ?>
+
                         </h4>
                     </div>
                     </p>

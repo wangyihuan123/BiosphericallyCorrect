@@ -23,40 +23,64 @@ class Profile extends Controller
      */
     function index()
     {
-        $this->view->render('profile/index');
+        $user_id =1;
+        if (isset($user_id)) {
+            // TODO:  
+            // $user_model = $this->loadModel('Profile');
+            // $this->view->user = $user_model->getUserProfile($user_id);
+            // var_dump($this->view->user);
+            $this->view->render('profile/index');
+        } else {
+            header('location: ' . URL);
+        }
+        
     }
 
 
+    
     /**
-     * This method controls what happens when you move to /profile/edit(/XX) in your app.
-     * Shows the current content of the profile and an editing form.
-     * @param $profile_id int id of the profile
+     * This method controls what happens when you move to /user/edituserprofile in your app.
+     * Edit the (public) details of the selected user.
+     * @param $user_id int id the the user
      */
-    public function edit($profile_id)
+    function edit($user_id)
     {
-        if (isset($profile_id)) {
-            // get the profile that you want to edit (to show the current content)
+        
+        if (isset($user_id)) {
             $profile_model = $this->loadModel('Profile');
-            $this->view->profile = $profile_model->getProfile($profile_id);
+            $this->view->basicProfile = $profile_model->getBasicProfile($user_id);
+            // var_dump($this->view->basicProfile);
             $this->view->render('profile/edit');
         } else {
-            header('location: ' . URL . 'profile');
+            header('location: ' . URL);
         }
     }
 
+    
     /**
-     * This method controls what happens when you move to /profile/editsave(/XX) in your app.
-     * Edits a profile (performs the editing after form submit).
-     * @param int $profile_id id of the profile
+     * This method controls what happens when you submit from /user/edituserprofile in your app.
+     * Save the (public) details of the selected user.
+     * @param $user_id int id the the user
      */
-    public function editSave($profile_id)
+    function editSave($user_id)
     {
-        if (isset($_POST['profile_text']) && isset($profile_id)) {
-            // perform the update: pass profile_id from URL and profile_text from POST
+        if (isset($user_id)) {
             $profile_model = $this->loadModel('Profile');
-            $profile_model->editSave($profile_id, $_POST['profile_text']);
+            $successful = $profile_model->editSave($user_id);   //, $_POST);
+
+            // use phpStorm to debug!
+            
+            if ($successful)
+            {
+                $this->view->render('profile/editsuccess');
+
+                return;
+            }
         }
-        header('location: ' . URL . 'profile');
+
+        // default: error and redirect to home page 
+        header('location: ' . URL);
+        
     }
 
     /**

@@ -241,6 +241,7 @@ class Login extends Controller
         if (isset($user_id) && isset($user_activation_verification_code)) {
             $login_model = $this->loadModel('Login');
             $login_model->verifyNewUser($user_id, $user_activation_verification_code);
+            $this->view->user_id = $user_id;
             $this->view->render('login/verify');
         } else {
             header('location: ' . URL . 'login/index');

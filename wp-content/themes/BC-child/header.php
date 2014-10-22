@@ -63,7 +63,7 @@
 
 	<ul id="header-bar">
 		<li><a href="<?php bloginfo('url'); ?>/php-login/login/index">login</a></li>
-		<li><a href="<?php bloginfo('url'); ?>/register">Register</a></li>
+		<li><a href="<?php bloginfo('url'); ?>/php-login/login/register">Register</a></li>
 		<li><a href="<?php bloginfo('url'); ?>/donate">Donate to this project</a></li>
 	</ul>
 

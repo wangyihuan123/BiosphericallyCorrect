@@ -13,17 +13,18 @@
     You can protect a whole section in your app within the according controller (here: controllers/dashboard.php)
     by placing <span style='font-style: italic;'>Auth::handleLogin();</span> into the constructor. -->
 
-    <div style="width: 100px;height: 100px;float: right; margin: 10px; background-color: grey">
-        <img src="<?php echo URL; ?>public/img/BiosphericallyCorrect.png" width="100px" height="100px" alt="">
-    </div>
     <h1>My Dashboard</h1>
     <br>
 
-    <section id = "Dashboard">
         
         <h3>
-        <img src="<?php echo URL; ?>public/img/blog_chart.jpg" width="20px" height="20px" style="margin-right: 10px ">
+        <!-- <img src="<?php echo URL; ?>public/img/blog_chart.jpg" width="20px" height="20px" style="margin-right: 10px "> -->
+        
+        <span class="glyphicon glyphicon-picture"></span>
         MY PROGRESS</h3>
+        <!-- <table class="table table-hover table-bordered"> -->
+
+
         <div class="tableContainer">
             <div class="tableRow">
                 <div class="tableHead"> 
@@ -70,12 +71,13 @@
         </div>  
         
 
-    </section>
-
     <br>
     <br>
     <section id = "EarnMorePoints">
-        <h2>Earn More Points</h2>
+
+        <h3> 
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+        Earn More Points</h3>
 <!-- 
         <table class="tableContainerwithBorder" >
             <tr>
@@ -94,7 +96,99 @@
             </tr>
         </table>
             -->
-        <br><br>
+        <br>
+        <div class="container">
+
+    <div class="row clearfix">
+        <div class="col-md-8 column">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                <h4> DIVERSITY PROTECTION  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge">242</span></h4>
+                </div>
+                
+                <div class="panel-body">
+                    <table class="table table-hover">
+                
+                <tbody class="info">
+                <tr>
+                    <td> Panel content Success </td><td> <span class="badge">12</span></td><td> <button type="button" class="btn btn-success btn-xs pull-right">Answer</button></td>
+                </tr>
+                <tr class="warning">
+                    <td> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam quae voluptatibus asperiores reiciendis recusandae, possimus impedit quisquam dicta esse sed!</td><td> <span class="badge">42</span></td><td> <button type="button" class="btn btn-success btn-xs pull-right">Answer</button></td>
+                </tr>
+                <tr class="danger">
+                    <td> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam quae voluptatibus asperiores reiciendis recusandae, possimus impedit quisquam dicta esse sed!</td><td> <span class="badge">42</span></td><td> <button type="button" class="btn btn-success btn-xs pull-right">Answer</button></td>
+                </tr>
+                </tbody>
+            </table>
+                </div>
+                </div>
+            </div>
+        </div>
+
+
+    <div class="row clearfix">
+        <div class="col-md-8 column">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                <h4> GREEN INGREDIENTS  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge">132</span></h4>
+                </div>
+                
+                <div class="panel-body">
+                    <table class="table table-hover">
+                
+                <tbody class="info">
+                <tr>
+                    <td> Panel content Success </td><td> <span class="badge">12</span></td><td> <button type="button" class="btn btn-success btn-xs pull-right">Answer</button></td>
+                </tr>
+                <tr >
+                    <td> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam quae voluptatibus asperiores reiciendis recusandae, possimus impedit quisquam dicta esse sed!</td><td> <span class="badge">42</span></td><td> <button type="button" class="btn btn-success btn-xs pull-right">Answer</button></td>
+                </tr>
+                <tr >
+                    <td> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam quae voluptatibus asperiores reiciendis recusandae, possimus impedit quisquam dicta esse sed!</td><td> <span class="badge">42</span></td><td> <button type="button" class="btn btn-success btn-xs pull-right">Answer</button></td>
+                </tr>
+                </tbody>
+            </table>
+                </div>
+                </div>
+            </div>
+        </div>
+
+
+    <div class="row clearfix">
+        <div class="col-md-8 column">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                <h4> POSITIVE FUNCTIONALITY  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge">22</span></h4>
+                </div>
+                
+                <div class="panel-body">
+                    <table class="table table-hover">
+                
+                <tbody class="info">
+                <tr>
+                    <td> Panel content Success </td><td> <span class="badge">12</span></td><td> <button type="button" class="btn btn-success btn-xs pull-right">Answer</button></td>
+                </tr>
+                <tr >
+                    <td> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam quae voluptatibus asperiores reiciendis recusandae, possimus impedit quisquam dicta esse sed!</td>
+                    <td> <span class="badge">11</span></td>
+                    <td> <button type="button" class="btn btn-success btn-xs pull-right" ><a href="<?php echo URL . 'emp_questionnaire/index/1' ; ?> "> Anwser </a></button></td>
+                </tr>
+                <tr >
+                    <td> link ipsum dolor sit amet, consectetur adipisicing elit. Aperiam quae voluptatibus asperiores reiciendis recusandae, possimus impedit quisquam dicta esse sed!</td>
+                    <td> <span class="badge">12</span></td>
+                    <!-- <td> <button type="button" class="btn btn-success btn-xs pull-right" onclick="window.location.href('http://localhost/BiosphericallyCorrect/php-login/emp_questionnaire/index/1')">Answer</button></td> -->
+                    <td> <a href="<?php echo URL . 'emp_questionnaire/index/1' ; ?>" class="btn btn-success btn-lg active btn-xs" role="button" style="text-decoration: none">Answer</a> </td>
+                    </tr>
+                </tbody>
+            </table>
+                </div>
+                </div>
+            </div>
+        </div>
+
+<!-- 
+        <br>
         <div class="tableContainerwithBorder" >
             <div class="EarnMorePointTableHead"> 
                 DIVERSITY PROTECTION <span style="padding-left: 100px"> <?php
@@ -116,7 +210,7 @@
             display_EMP_tabel($this->earnmorepoint, "Green ingredients");
             ?>
         </div>
-
+ -->
         
     </section>
 

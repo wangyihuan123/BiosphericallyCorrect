@@ -43,41 +43,18 @@ class User extends Controller
     }
 
     /**
-     * This method controls what happens when you move to /user/edituserprofile in your app.
-     * Edit the (public) details of the selected user.
+     * This method controls what happens when you move to /user/showuserprofile in your app.
+     * Shows the (public) details of the selected user.
      * @param $user_id int id the the user
      */
-    function editUserProfile($user_id)
+    function showOrganizationProfile($user_id)
     {
         if (isset($user_id)) {
-            $user_model = $this->loadModel('User');
-            $this->view->user = $user_model->getUserProfile($user_id);
-            // var_dump($this->view->user);
-            $this->view->render('user/edituserprofile');
-        } else {
-            header('location: ' . URL);
-        }
-    }
-
-    
-    /**
-     * This method controls what happens when you submit from /user/edituserprofile in your app.
-     * Save the (public) details of the selected user.
-     * @param $user_id int id the the user
-     */
-    function editSaveUserProfile($user_id)
-    {
-        if (isset($user_id)) {
-            $user_model = $this->loadModel('User');
-            $successful = $user_model->editSave($user_id, $_POST);
-
-            // var_dump($this->view->user);
+            $profile_model = $this->loadModel('Profile');
             
-            if ($successful)
-            {
-                $this->view->render('user/userprofilesuccess');
-            }
-            
+            $this->view->profile = $profile_model->getProfile($user_id);
+            // var_dump($this->view->user);
+            $this->view->render('user/showorganizationprofile');
         } else {
             header('location: ' . URL);
         }

@@ -518,7 +518,7 @@ class LoginModel
             // set PHPMailer to use SMTP
             $mail->IsSMTP();
             // useful for debugging, shows full SMTP errors, config this in config/config.php
-            $mail->SMTPDebug = PHPMAILER_DEBUG_MODE;
+            // $mail->SMTPDebug = PHPMAILER_DEBUG_MODE;
             // enable SMTP authentication
             $mail->SMTPAuth = EMAIL_SMTP_AUTH;
             // enable encryption, usually SSL/TLS
@@ -542,7 +542,7 @@ class LoginModel
         $mail->Body = EMAIL_VERIFICATION_CONTENT . EMAIL_VERIFICATION_URL . '/' . urlencode($user_id) . '/' . urlencode($user_activation_hash);
 
 // $mail->IsSMTP();  // telling the class to use SMTP
-$mail->SMTPDebug = 1;   // 1 = errors and messages
+//$mail->SMTPDebug = 1;   // 1 = errors and messages
                         // 2 = messages only
 
 // $mail->Host = "smtp.gmail.com";

@@ -584,6 +584,7 @@ body.home #container {
 }
 
 #main {
+	float: right;
 	position: relative;
 }
 

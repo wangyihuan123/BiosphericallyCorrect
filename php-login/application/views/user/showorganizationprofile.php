@@ -1,5 +1,5 @@
 <div class="content">
-    <h1><?php echo $this->user->user_name . "'s";?> profile</h1>
+    <h1><?php echo $this->profile->organisation_name; ?> </h1>
     <!-- <p>This controller/action/view shows all public information about a certain user.</p> -->
 
     <!-- echo out the system feedback (error and success messages) -->
@@ -10,51 +10,54 @@
         <div class="col-md-12 column">
             <dl class="dl-horizontal">
                 <dt>
-                    ID
+                    User ID
                 </dt>
                 <dd>
-                    <?php echo $this->user->user_id; ?>
+                    <?php echo $this->profile->user_id; ?>
                 </dd>
                 <dt>
-                    Username
+                    Orgarization Name
                 </dt>
                 <dd>
-                    <?php echo $this->user->user_name; ?>
+                    <?php echo $this->profile->organisation_name; ?>
                 </dd>
                 
                 <dt>
-                    Email
+                    Contact Person
                 </dt>
                 <dd>
-                    <?php echo $this->user->user_email; ?>
+                    <?php echo $this->profile->first_name . " ". $this->profile->last_name; ?>
+                </dd>
+                
+                <dt>
+                    Orgarization Address
+                </dt>
+                <dd>
+                     <?php echo $this->profile->address; ?>
                 </dd>
                 <dt>
-                    Active
+                    Town/City
                 </dt>
                 <dd>
-                    <?php if ($this->user->user_active == 0) {
-                            echo 'Inactive';
-                        } else {
-                            echo 'Active';
-                        }?>
+                     <?php echo $this->profile->town_city; ?>
                 </dd>
                 <dt>
-                    echo Last login time
+                    Phone
                 </dt>
                 <dd>
-                    <?php echo date('m/d/Y h:i:s a', $this->user->user_last_login_timestamp); ?>
+                     <?php echo $this->profile->phone; ?>
                 </dd>
                 <dt>
-                    Creation time
+                    Website
                 </dt>
                 <dd>
-                    <?php echo date('m/d/Y h:i:s a', $this->user->user_creation_timestamp); ?>
+                    <?php echo $this->profile->phone; ?>
                 </dd>
                 <dt>
-                    Provider type
+                    Public Profile
                 </dt>
                 <dd>
-                    <?php echo $this->user->user_provider_type; ?>
+                    <a href="<?php echo URL . '/profile/index'; ?>"> Click Here for detail</a>
                 </dd>
             </dl>
         </div>

@@ -233,8 +233,8 @@ define("EMAIL_SMTP_ENCRYPTION", 'ssl');
  */
 define("EMAIL_PASSWORD_RESET_URL", URL . "login/verifypasswordreset");
 define("EMAIL_PASSWORD_RESET_FROM_EMAIL", "wangyihuan123@gmail.com");
-define("EMAIL_PASSWORD_RESET_FROM_NAME", "My Project");
-define("EMAIL_PASSWORD_RESET_SUBJECT", "Password reset for PROJECT XY");
+define("EMAIL_PASSWORD_RESET_FROM_NAME", "Biospherically Correct");
+define("EMAIL_PASSWORD_RESET_SUBJECT", "Password reset for Biospherically Correct");
 define("EMAIL_PASSWORD_RESET_CONTENT", "Please click on this link to reset your password: ");
 
 define("EMAIL_VERIFICATION_URL", URL . "login/verify");

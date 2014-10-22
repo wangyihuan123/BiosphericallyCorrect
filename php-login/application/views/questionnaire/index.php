@@ -23,11 +23,23 @@
  -->
 
     <!-- <section id = "requiredActions"> -->
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-8 column">
+        <div class="jumbotron">
+            <h2>
+                My Assessment
+            </h2>
+            <p>Fill out the assessment below. To earn Biospherically Correct generation 2 &amp; 3, you must complete the Required Action for each level and accumulate enough points from the 100 questions.</p>
 
-        <h1>My Assessment</h2>
-        <p>Fill out the assessment below. To earn Biospherically Correct generation 2 &amp; 3, you must complete the Required Action for each level and accumulate enough points from the 100 questions.</p>
+            <p>
+                <a class="btn btn-primary btn-large" href="<?php echo URL; ?>help/index">Learn more</a>
+            </p>
+        </div>
+        </div>
+    </div>
         <p>&nbsp;</p>
-
+</div>
         <h1>Required Actions</h1>
         <p>You must complete these actions to attain a certification level.</p>
         <hr />
@@ -90,6 +102,8 @@
             </div>
         </form>
             
+
+
 
     <!-- </section> -->
 

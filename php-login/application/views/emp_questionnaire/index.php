@@ -29,12 +29,21 @@
             <div class = "EMP_stepsHint">
                 <p><?php echo $this->emp_questionnaire->step_hint; ?></p>
             </div>
+            <h3> Key Steps </h3>
             <div class = "EMP_KeySteps">
-                <h3> Key Steps </h3>
-                <ul> 
+                <div class="panel-body">
+                  <div class="list-group">
+                    
+                    <p><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Healthy Biospheric services, the biodiversity of life and the vital cultural diver</p>
+                    
+                </div>
+            </div>
+
+                
+                <!-- <ul> 
                     <li><?php echo $this->emp_questionnaire->key_steps; ?></li> 
                 </ul> 
-                <p> </p>
+                <p> </p> -->
             </div>
             <div class = "EMP_resource">
                 <h3>RESOURCE</h3>
@@ -56,13 +65,12 @@
                         <option>75~100%</option>
                     </select>
                     <br><br><br>
-                    <input class="php-login" type="submit" value="Complete" style="margin-left: 25px"/>
-
+                    <button class="btn btn-primary btn-lg" type="submit" value="Complete" style="margin-left: 25px">Complete</button>
 
                     <br><br><br>
                     <h3>COMMENTS</h3>
                     <p>Please feel free to share any details or examples of your work for this initiative. Your responses will remain confidential.<br></p>
-                    <textarea name="commentsEarnMorePointDiversityProtection" style="width: 600px; height: 150px;"></textarea><br>
+                    <textarea name="commentsEarnMorePointDiversityProtection" style="width: 600px; height: 150px; margin-left:15px;"></textarea><br>
                     <br><br>
                     <input class="php-login" type="submit" value="Post my Comment" style="margin-left: 25px" />
                 </form>
